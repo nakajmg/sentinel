@@ -1,5 +1,6 @@
 import 'whatwg-fetch'
 import nanoid from 'nanoid'
+import UAParser from 'ua-parser-js'
 
 export default class Sentinel {
   /**
@@ -40,11 +41,12 @@ export default class Sentinel {
    * @return {Promise<Object, Error>}
    */
   _initializePerfData({url, id}) {
+    const ua = new UAParser(window.navigator.userAgent)
     const json = {
       id,
       timing: {},
-      date: new Date(),
-      userAgent: window.navigator.userAgent
+      date: Date.now(),
+      env: ua.getResult()
     }
     return this._post(url, json)
   }
