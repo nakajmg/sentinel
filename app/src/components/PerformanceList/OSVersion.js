@@ -1,10 +1,15 @@
 import React from 'react'
-
 import iconMacos from '../../img/macos.svg'
 import iconWindows from '../../img/win.svg'
 import iconIOS from '../../img/ios.svg'
 import iconAndroid from '../../img/android.svg'
 
+/**
+ * @param {object} props
+ * @param {string} props.name - OS names which provide from ua-parser
+ * @param {string} props.version - OS versions which provide from ua-parser
+ * @return {element}
+ */
 export default function OSVersion ({name, version}){
   const style = {
     width: '20px',

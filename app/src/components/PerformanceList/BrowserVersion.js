@@ -5,6 +5,12 @@ import iconFirefox from '../../img/mozilla.svg'
 import iconIE from '../../img/explorer.svg'
 import iconBrowser from '../../img/browser.svg'
 
+/**
+ * @param {object} props
+ * @param {string} props.name - browser names which provide from ua-parser
+ * @param {string} props.version - browser versions which provide from ua-parser
+ * @return {element}
+ */
 export default function BrowserVersion({name, version}) {
   const style = {
     width: '20px',
