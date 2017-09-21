@@ -1,5 +1,5 @@
 import 'whatwg-fetch'
-import {observable, action, autorun} from 'mobx'
+import {observable, action} from 'mobx'
 import PropTypes from 'prop-types'
 
 /**
@@ -7,61 +7,69 @@ import PropTypes from 'prop-types'
  */
 class Store {
   constructor() {
-    this.initialize()
+    this._initialize()
   }
 
   /**
-   * observable isInitialized
+   * @public
+   * @type {boolean}
    */
   @observable isInitialized = false
 
+  /**
+   * @public
+   * @type {Array<Object>}
+   */
   @observable perfData = []
 
+  /**
+   * @public
+   * @return {Promise}
+   */
   @action.bound
-  initialize() {
+  async updatePerfData() {
+    const data = await this._fetchPerfData()
+    console.log(data)
+    return this._setPerfData(data)
+  }
+
+  /**
+   * @private
+   * @return {Promise}
+   */
+  @action.bound
+  _initialize() {
     return this.updatePerfData()
       .then(() => {
         this.isInitialized = true
       })
   }
 
-  async updatePerfData() {
-    const data = await this.fetchPerfData()
-    return this.setPerfData(data)
-  }
-
-  fetchPerfData() {
-    return fetch('http://localhost:5889/timing?_sort=id&_order=desc')
+  /**
+   * @private
+   * @return {Promise}
+   */
+  _fetchPerfData() {
+    return fetch('http://localhost:5889/perf')
       .then(res => res.json())
   }
 
+  /**
+   * @private
+   */
   @action.bound
-  setPerfData(data) {
+  _setPerfData(data) {
     this.perfData= data
   }
-
-
-  postPerfData() {
-    const timing = window.performance.timing
-    return fetch('http://localhost:5889/timing', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(timing)
-    })
-  }
-
-  @action.bound
-  async onClickPostPerfData() {
-    await this.postPerfData()
-    this.updatePerfData()
-  }
-
 }
 
 export default Store
 
+/**
+ * @example
+ * import {propTypes} from './store'
+ * App.propTypes = propTypes
+ */
 export const propTypes = {
   store: PropTypes.shape({
     perfData: PropTypes.array,
