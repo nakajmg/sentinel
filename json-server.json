@@ -1,0 +1,5 @@
+{
+  "port": "5889",
+  "watch": true,
+  "static": "./static"
+}

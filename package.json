@@ -1,0 +1,30 @@
+{
+  "scripts": {
+    "start": "json-server db.json",
+    "build": "webpack",
+    "watch": "webpack --progress --colors --watch",
+    "esdoc": "esdoc"
+  },
+  "dependencies": {
+    "json-server": "^0.12.0",
+    "nanoid": "^0.2.1",
+    "whatwg-fetch": "^2.0.3"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "esdoc": "^1.0.3",
+    "esdoc-standard-plugin": "^1.0.0",
+    "webpack": "^3.6.0"
+  },
+  "esdoc": {
+    "source": "./src",
+    "destination": "./docs",
+    "plugins": [
+      {
+        "name": "esdoc-standard-plugin"
+      }
+    ]
+  }
+}
