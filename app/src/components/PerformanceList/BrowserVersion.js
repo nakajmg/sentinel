@@ -25,6 +25,9 @@ export default function BrowserVersion({name, version}) {
     case 'safari':
       icon = iconSafari
       break
+    case 'mobile safari':
+      icon = iconSafari
+      break
     case 'firefox':
       icon = iconFirefox
       break
