@@ -24,7 +24,24 @@ class App extends Component {
           title="SENTINEL"
           showMenuIconButton={false}
         />
+        {/*
         <PerformanceList items={this.props.store.perfData}></PerformanceList>
+        <button onClick={this.props.store.updatePerfData}>reload</button>
+        */}
+        <RouterView store={this.props.store}></RouterView>
+      </div>
+    )
+  }
+}
+
+@observer
+class RouterView extends Component {
+  render() {
+    const store = this.props.store
+    return (
+      <div>
+        <PerformanceList items={store.perfData}></PerformanceList>
+        <button onClick={store.updatePerfData}>reload</button>
       </div>
     )
   }

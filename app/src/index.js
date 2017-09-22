@@ -4,7 +4,7 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import Store from './store'
-
+import {autorun} from 'mobx'
 import {Provider} from 'mobx-react'
 import {MuiThemeProvider, getMuiTheme} from 'material-ui/styles'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
@@ -37,6 +37,10 @@ function render() {
     </MuiThemeProvider>
     ,document.querySelector('#root'))
 }
-render()
+autorun(() => {
+  if(!store.isInitialized) return
+  render()
+})
+
 
 registerServiceWorker()
