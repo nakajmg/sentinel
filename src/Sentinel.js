@@ -6,7 +6,12 @@ export default class Sentinel {
   /**
    * @constructor
    */
-  constructor() {
+  constructor(ip) {
+    /**
+     * @private
+     * @type {string}
+     */
+    this.ip = ip
     /**
      * @private
      * @type {string}
@@ -16,7 +21,7 @@ export default class Sentinel {
      * @public
      * @type {string}
      */
-    this.url = 'http://localhost:5889/perf'
+    this.url = `http://${this.ip}:5889/perf`
 
     this._initializePerfData({url: this.url, id: this.id})
   }

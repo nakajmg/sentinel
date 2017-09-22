@@ -2,7 +2,7 @@ import Sentinel from './Sentinel.js'
 (() => {
   document.addEventListener('DOMContentLoaded', () => {
     document.querySelector('#post').addEventListener('click', e => {
-      const sentinel = new Sentinel()
+      const sentinel = new Sentinel('192.168.0.8')
       document.querySelector('#patch').addEventListener('click', e => {
         sentinel.sendPerformanceTiming()
           .then(console.log)
