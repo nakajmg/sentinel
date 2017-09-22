@@ -5,10 +5,21 @@ import Router from './Router'
 @inject('store')
 @observer
 class RouterView extends Component {
+  /**
+   * @param {Object} props
+   */
   constructor(props) {
     super(props)
+    /**
+     * @type {Router} router
+     * @public
+     */
     this.router = new Router(this.props.store)
   }
+
+  /**
+   * @return {ReactComponent}
+   */
   render() {
     const store = this.props.store
     const route = this.router.route
