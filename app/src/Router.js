@@ -8,30 +8,16 @@ const pathMatch = PathMatch({
 })
 
 class Router {
-  constructor(store) {
-    let route = null
-    each(store.routes, (_route) => {
+  constructor({routes, location}) {
+    each(routes, (_route) => {
       const match = pathMatch(_route.path)
-      const params = match(store.location.pathname)
+      const params = match(location.pathname)
       if (params) {
-        route = {
-          ..._route,
-          params
-        }
+        this.route = _route
+        this.params = params
         return false
       }
     })
-    this.route = route
-    this.store = store
-  }
-
-  render() {
-    if (this.route === null) return <div></div>
-    const Component = this.route.component
-    const params = this.route.params
-    return (
-      <Component store={this.store} params={params}></Component>
-    )
   }
 }
 

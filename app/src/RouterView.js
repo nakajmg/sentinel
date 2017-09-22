@@ -5,14 +5,17 @@ import Router from './Router'
 @inject('store')
 @observer
 class RouterView extends Component {
+  constructor(props) {
+    super(props)
+    this.router = new Router(this.props.store)
+  }
   render() {
     const store = this.props.store
-    const router = new Router(store)
-    const Component = router.render()
+    const route = this.router.route
+    const Component = route.component
+    const params = route.params
     return (
-      <div>
-        {Component}
-      </div>
+      <Component params={params} store={store}></Component>
     )
   }
 }
