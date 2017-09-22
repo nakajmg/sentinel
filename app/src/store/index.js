@@ -1,13 +1,15 @@
 import 'whatwg-fetch'
 import {observable, action} from 'mobx'
 import PropTypes from 'prop-types'
-
+import routes from '../routes'
 /**
  * this is Store
  */
 class Store {
   constructor() {
     this._initialize()
+    this.location = window.location
+    this.routes = routes
   }
 
   /**
@@ -21,6 +23,7 @@ class Store {
    * @type {Array<Object>}
    */
   @observable perfData = []
+
 
   /**
    * @public
