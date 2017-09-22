@@ -5,7 +5,7 @@ import iconIOS from '../../img/ios.svg'
 import iconAndroid from '../../img/android.svg'
 
 /**
- * @param {object} props
+ * @param {Object} props
  * @param {string} props.name - OS names which provide from ua-parser
  * @param {string} props.version - OS versions which provide from ua-parser
  * @return {element}

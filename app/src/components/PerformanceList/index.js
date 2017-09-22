@@ -11,7 +11,11 @@ import {format} from 'date-fns'
 import BrowserVersion from './BrowserVersion'
 import OSVersion from './OSVersion'
 
-export default function PerformanceList({perfData}) {
+/**
+ * @param {Object} props
+ * @param {Object} props.perfData
+ */
+export default function PerformanceList({items}) {
   return (
     <Table selectable={false}>
       <TableHeader displaySelectAll={false}>
@@ -26,10 +30,10 @@ export default function PerformanceList({perfData}) {
         stripedRows={true}
       >
         {
-          perfData.map((data) => {
-            const date = format(data.date, 'YYYY-MM-DD hh:mm:ss')
-            const {browser, os} = data.env
-            return <TableRow key={data.id} onMouseDown={e => {console.log(data)}}>
+          items.map((item) => {
+            const date = format(item.date, 'YYYY-MM-DD hh:mm:ss')
+            const {browser, os} = item.env
+            return <TableRow key={item.id} onMouseDown={e => {console.log(item)}}>
               <TableRowColumn>{date}</TableRowColumn>
               <TableRowColumn>
                 <BrowserVersion name={browser.name} version={browser.version}></BrowserVersion>

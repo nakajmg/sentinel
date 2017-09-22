@@ -24,7 +24,7 @@ class App extends Component {
           title="SENTINEL"
           showMenuIconButton={false}
         />
-        <PerformanceList perfData={this.props.store.perfData}></PerformanceList>
+        <PerformanceList items={this.props.store.perfData}></PerformanceList>
       </div>
     )
   }

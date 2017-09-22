@@ -6,7 +6,7 @@ import iconIE from '../../img/explorer.svg'
 import iconBrowser from '../../img/browser.svg'
 
 /**
- * @param {object} props
+ * @param {Object} props
  * @param {string} props.name - browser names which provide from ua-parser
  * @param {string} props.version - browser versions which provide from ua-parser
  * @return {element}
