@@ -10,6 +10,7 @@ import {
 import Timestamp from './Timestamp'
 import BrowserVersion from './BrowserVersion'
 import OSVersion from './OSVersion'
+import '../../App.css'
 
 /**
  * @param {Object} props
@@ -24,7 +25,6 @@ function PerformanceList({items, router}) {
       }
     })
   }
-
   return (
     <Table selectable={false}>
       <TableHeader displaySelectAll={false}>
@@ -37,21 +37,29 @@ function PerformanceList({items, router}) {
       <TableBody
         displayRowCheckbox={false}
         stripedRows={true}
+        showRowHover={true}
       >
         {
           items.map((item) => {
             const {browser, os} = item.env
-            return <TableRow key={item.id} onMouseDown={e => {navigate(item)}}>
-              <TableRowColumn>
-                <Timestamp date={item.date}></Timestamp>
-              </TableRowColumn>
-              <TableRowColumn>
-                <BrowserVersion browser={browser}></BrowserVersion>
-              </TableRowColumn>
-              <TableRowColumn>
-                <OSVersion os={os}></OSVersion>
-              </TableRowColumn>
-            </TableRow>
+            return (
+              <TableRow
+                className='cursorPointer'
+                key={item.id}
+                onMouseDown={e => {navigate(item)}}
+                hoverable={true}
+              >
+                <TableRowColumn>
+                  <Timestamp date={item.date}></Timestamp>
+                </TableRowColumn>
+                <TableRowColumn>
+                  <BrowserVersion browser={browser}></BrowserVersion>
+                </TableRowColumn>
+                <TableRowColumn>
+                  <OSVersion os={os}></OSVersion>
+                </TableRowColumn>
+              </TableRow>
+            )
           })
         }
       </TableBody>

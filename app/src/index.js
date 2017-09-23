@@ -15,8 +15,8 @@ window.store = store
 const customTheme = {
   "tableRow": {
     "selectedColor": "#ffc400",
-    "hoverColor": "#ffd600",
-    "stripeColor": "rgba(255, 253, 231, 0.13)"
+    "hoverColor": "#ffab00",
+    "stripeColor": "rgba(97, 97, 97, 0.4)"
   },
   "tableHeaderColumn": {
     "textColor": "#ffd600"
