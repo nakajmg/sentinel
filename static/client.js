@@ -554,7 +554,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 (function () {
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelector('#post').addEventListener('click', function (e) {
-      var sentinel = new _Sentinel2.default();
+      var sentinel = new _Sentinel2.default('192.168.0.8');
       document.querySelector('#patch').addEventListener('click', function (e) {
         sentinel.sendPerformanceTiming().then(console.log);
       });
@@ -604,9 +604,14 @@ var Sentinel = function () {
   /**
    * @constructor
    */
-  function Sentinel() {
+  function Sentinel(ip) {
     _classCallCheck(this, Sentinel);
 
+    /**
+     * @private
+     * @type {string}
+     */
+    this.ip = ip;
     /**
      * @private
      * @type {string}
@@ -616,7 +621,7 @@ var Sentinel = function () {
      * @public
      * @type {string}
      */
-    this.url = 'http://localhost:5889/perf';
+    this.url = 'http://' + this.ip + ':5889/perf';
 
     this._initializePerfData({ url: this.url, id: this.id });
   }
