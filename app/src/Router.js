@@ -13,18 +13,17 @@ class Router {
   /**
    * @constructor
    * @param {Store} store
-   * @param {function} store.udpatePathname
    */
-  constructor({updatePathname}) {
+  constructor(store) {
     this._watchHistoryState()
-    this._updatePathname = updatePathname
+    this._updatePathname = store.updatePathname
   }
 
   /**
    * @public
    * @param {Store} store
-   * @param {Object} routes
-   * @param {string} pathname
+   * @param {Object} store.routes
+   * @param {string} store.pathname
    */
   getRoute({routes, pathname}) {
     const route = {}

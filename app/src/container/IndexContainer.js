@@ -3,8 +3,8 @@ import PerformanceList from '../components/PerformanceList'
 
 /**
  * @param {Object} props
- * @param {Object} props.store
- * @return {ReactComponent}
+ * @param {Store} props.store
+ * @return {React.Component}
  */
 function IndexContainer ({store}) {
   return (
