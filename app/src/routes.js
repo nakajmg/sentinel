@@ -3,15 +3,9 @@ import IndexContainer from './container/IndexContainer'
 
 export default [
   {
-    path: '/test/:id',
+    path: '/performance/:id',
     component({params}) {
-      return <div>/test/{params.id}</div>
-    }
-  },
-  {
-    path: '/test',
-    component() {
-      return <div>/test</div>
+      return <div>/performance/{params.id}</div>
     }
   },
   {

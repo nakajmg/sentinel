@@ -3,7 +3,6 @@ import {observer, inject} from 'mobx-react'
 import {propTypes} from './store'
 import {AppBar} from 'material-ui'
 import {grey800} from 'material-ui/styles/colors'
-import PerformanceList from './components/PerformanceList'
 import RouterView from './RouterView'
 
 /**
@@ -25,10 +24,6 @@ class App extends Component {
           title="SENTINEL"
           showMenuIconButton={false}
         />
-        {/*
-        <PerformanceList items={this.props.store.perfData}></PerformanceList>
-        <button onClick={this.props.store.updatePerfData}>reload</button>
-        */}
         <RouterView></RouterView>
       </div>
     )

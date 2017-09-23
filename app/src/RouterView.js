@@ -22,7 +22,7 @@ class RouterView extends Component {
    */
   render() {
     const store = this.props.store
-    const route = this.router.route
+    const route = this.router.getRoute(store)
     const Component = route.component
     const params = route.params
     return (

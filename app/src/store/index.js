@@ -8,8 +8,12 @@ import routes from '../routes'
 class Store {
   constructor() {
     this._initialize()
-    this.location = window.location
     this.routes = routes
+  }
+
+  @action.bound
+  updatePathname() {
+    this.pathname = window.location.pathname
   }
 
   /**
@@ -17,6 +21,12 @@ class Store {
    * @type {boolean}
    */
   @observable isInitialized = false
+
+  /**
+   * @public
+   * @type {string}
+   */
+  @observable pathname = window.location.pathname
 
   /**
    * @public
