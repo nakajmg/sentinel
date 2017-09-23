@@ -1,12 +1,10 @@
-import React from 'react'
 import IndexContainer from './container/IndexContainer'
+import PerformanceContainer from './container/PerformanceContainer'
 
 export default [
   {
     path: '/performance/:id',
-    component({params}) {
-      return <div>/performance/{params.id}</div>
-    }
+    component: PerformanceContainer
   },
   {
     path: '/',

@@ -10,7 +10,8 @@ import iconAndroid from '../../img/android.svg'
  * @param {string} props.version - OS versions which provide from ua-parser
  * @return {element}
  */
-export default function OSVersion ({name, version}){
+function OSVersion ({os}){
+  const {name, version} = os
   const style = {
     width: '20px',
     height: '20px',
@@ -34,9 +35,11 @@ export default function OSVersion ({name, version}){
       icon = iconWindows
   }
   return (
-    <div>
+    <span>
       <img src={icon} style={style} alt={name}/>
       <span> {version}</span>
-    </div>
+    </span>
   )
 }
+
+export default OSVersion

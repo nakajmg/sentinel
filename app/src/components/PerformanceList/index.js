@@ -7,7 +7,7 @@ import {
   TableRow,
   TableRowColumn,
 } from 'material-ui/Table';
-import {format} from 'date-fns'
+import Timestamp from './Timestamp'
 import BrowserVersion from './BrowserVersion'
 import OSVersion from './OSVersion'
 
@@ -15,7 +15,7 @@ import OSVersion from './OSVersion'
  * @param {Object} props
  * @param {Object} props.perfData
  */
-export default function PerformanceList({items}) {
+function PerformanceList({items}) {
   return (
     <Table selectable={false}>
       <TableHeader displaySelectAll={false}>
@@ -31,15 +31,16 @@ export default function PerformanceList({items}) {
       >
         {
           items.map((item) => {
-            const date = format(item.date, 'YYYY-MM-DD hh:mm:ss')
             const {browser, os} = item.env
-            return <TableRow key={item.id} onMouseDown={e => {console.log(item)}}>
-              <TableRowColumn>{date}</TableRowColumn>
+            return <TableRow key={item.id} onMouseDown={e => {navigate(item)}}>
               <TableRowColumn>
-                <BrowserVersion name={browser.name} version={browser.version}></BrowserVersion>
+                <Timestamp date={item.date}></Timestamp>
               </TableRowColumn>
               <TableRowColumn>
-                <OSVersion name={os.name} version={os.version}></OSVersion>
+                <BrowserVersion browser={browser}></BrowserVersion>
+              </TableRowColumn>
+              <TableRowColumn>
+                <OSVersion os={os}></OSVersion>
               </TableRowColumn>
             </TableRow>
           })
@@ -48,3 +49,17 @@ export default function PerformanceList({items}) {
     </Table>
   )
 }
+
+/**
+ * @private
+ * @param {Object} item
+ */
+function navigate(item) {
+  const {id, env} = item
+  const browser = `${env.browser.name} ${env.browser.version}`
+  const os = `${env.os.name} ${env.os.version}`
+  const title = `${browser} / ${os}`
+  window.history.pushState(item, title, `/performance/${id}`)
+}
+
+export default PerformanceList

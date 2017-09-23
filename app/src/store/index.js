@@ -1,5 +1,6 @@
 import 'whatwg-fetch'
 import {observable, action} from 'mobx'
+import {find} from 'lodash-es'
 import PropTypes from 'prop-types'
 import routes from '../routes'
 /**
@@ -73,6 +74,19 @@ class Store {
   @action.bound
   _setPerfData(data) {
     this.perfData= data
+  }
+
+  /**
+   * @public
+   * @param {Object} param
+   * @param {string} param.id
+   * @return {Object}
+   */
+  @action.bound
+  getPerformanceDataById({id}) {
+    return find(this.perfData, (data) => {
+      return data.id === id
+    })
   }
 }
 

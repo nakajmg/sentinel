@@ -11,7 +11,8 @@ import iconBrowser from '../../img/browser.svg'
  * @param {string} props.version - browser versions which provide from ua-parser
  * @return {element}
  */
-export default function BrowserVersion({name, version}) {
+function BrowserVersion({browser}) {
+  const {name, version} = browser
   const style = {
     width: '20px',
     height: '20px',
@@ -38,9 +39,11 @@ export default function BrowserVersion({name, version}) {
       icon = iconBrowser
   }
   return (
-    <div>
+    <span>
       <img src={icon} style={style} alt={name}/>
       <span> {`${version}`}</span>
-    </div>
+    </span>
   )
 }
+
+export default BrowserVersion
