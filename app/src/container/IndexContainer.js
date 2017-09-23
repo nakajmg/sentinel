@@ -8,7 +8,7 @@ import PerformanceList from '../components/PerformanceList'
  */
 function IndexContainer ({store}) {
   return (
-    <PerformanceList items={store.perfData}/>
+    <PerformanceList router={store.router} items={store.perfData}/>
   )
 }
 

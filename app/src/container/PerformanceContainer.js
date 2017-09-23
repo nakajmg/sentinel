@@ -11,8 +11,8 @@ import Timestamp from '../components/PerformanceList/Timestamp'
  */
 function PerformanceContainer({store, params}) {
   const data = store.getPerformanceDataById(params)
-  console.log(data)
   if (isUndefined(data)) return <div>no match id</div>
+  console.log(JSON.parse(JSON.stringify(data)))
   return (
     <div>
       <div>

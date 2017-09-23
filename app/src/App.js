@@ -23,6 +23,9 @@ class App extends Component {
         <AppBar
           title="SENTINEL"
           showMenuIconButton={false}
+          onTitleTouchTap={() => {
+            this.props.store.router.push({name: 'root'})
+          }}
         />
         <RouterView></RouterView>
       </div>

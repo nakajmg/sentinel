@@ -2,6 +2,7 @@ import 'whatwg-fetch'
 import {observable, action} from 'mobx'
 import {find} from 'lodash-es'
 import PropTypes from 'prop-types'
+import Router from '../Router'
 import routes from '../routes'
 /**
  * this is Store
@@ -10,6 +11,7 @@ class Store {
   constructor() {
     this._initialize()
     this.routes = routes
+    this.router = new Router(this)
   }
 
   @action.bound

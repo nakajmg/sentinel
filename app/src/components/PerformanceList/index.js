@@ -15,7 +15,16 @@ import OSVersion from './OSVersion'
  * @param {Object} props
  * @param {Object} props.perfData
  */
-function PerformanceList({items}) {
+function PerformanceList({items, router}) {
+  function navigate(item) {
+    router.push({
+      name: 'performance',
+      params: {
+        id: item.id
+      }
+    })
+  }
+
   return (
     <Table selectable={false}>
       <TableHeader displaySelectAll={false}>
@@ -54,6 +63,7 @@ function PerformanceList({items}) {
  * @private
  * @param {Object} item
  */
+/*
 function navigate(item) {
   const {id, env} = item
   const browser = `${env.browser.name} ${env.browser.version}`
@@ -61,5 +71,6 @@ function navigate(item) {
   const title = `${browser} / ${os}`
   window.history.pushState(item, title, `/performance/${id}`)
 }
+*/
 
 export default PerformanceList
