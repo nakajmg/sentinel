@@ -23,6 +23,14 @@
   to { transform: rotate(360deg); }
 }
 
+.fadein {
+  opacity: 0.1;
+}
+.fadein-enter {
+  opacity: 1;
+  transition: all 500ms ease;
+}
+
 .cursorPointer {
   cursor: pointer;
 }

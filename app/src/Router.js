@@ -29,9 +29,9 @@ class Router {
    */
   push(options) {
     if (typeof options === 'string') {
-      return this._navigateByPath()
+      return this._navigateByPath(options)
     }
-    const {name, path, params, query} = options
+    const {name, path, params, query, e} = options
     let route
     let url = ''
     if (name) {
@@ -57,8 +57,14 @@ class Router {
         return `${key}=${value}`
       }).join('&')
     }
-    // ToDo タイトル更新したいならRouterViewかなんかでreplaceStateすればいい？
-    this._pushState(null, name ? name : url, url)
+    // cmdかshiftが押されてたら別タブで後ろで開く
+    if (e && (e.metaKey || e.metaKey)) {
+      this._open(url, e)
+    }
+    else {
+      // ToDo タイトル更新したいならRouterViewかなんかでreplaceStateすればいい？
+      this._pushState(null, name ? name : url, url)
+    }
   }
 
   /**
@@ -155,6 +161,14 @@ class Router {
    */
   _pushState(state, title, path) {
     window.history.pushState(state, title, path)
+  }
+
+  _open(url, e) {
+    const _window = window.open(url, '_blank')
+    // shiftが押されてたらフォーカスする
+    if (e.shiftKey) {
+      _window.focus()
+    }
   }
 }
 

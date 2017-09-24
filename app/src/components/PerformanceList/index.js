@@ -17,16 +17,20 @@ import '../../App.css'
  * @param {Object} props.perfData
  */
 function PerformanceList({items, router}) {
-  function navigate(item) {
+  function navigate(item, e) {
     router.push({
       name: 'performance',
       params: {
         id: item.id
-      }
+      },
+      e
     })
   }
   return (
-    <Table selectable={false}>
+    <Table selectable={false} onCellClick={(rowNumber, columnNumber, e) => {
+      const item = items[rowNumber]
+      navigate(item, e)
+    }}>
       <TableHeader displaySelectAll={false}>
         <TableRow selectable={true}>
           <TableHeaderColumn>Date</TableHeaderColumn>
@@ -39,29 +43,7 @@ function PerformanceList({items, router}) {
         stripedRows={true}
         showRowHover={true}
       >
-        {
-          items.map((item) => {
-            const {browser, os} = item.env
-            return (
-              <TableRow
-                className='cursorPointer'
-                key={item.id}
-                onMouseDown={e => {navigate(item)}}
-                hoverable={true}
-              >
-                <TableRowColumn>
-                  <Timestamp date={item.date}></Timestamp>
-                </TableRowColumn>
-                <TableRowColumn>
-                  <BrowserVersion browser={browser}></BrowserVersion>
-                </TableRowColumn>
-                <TableRowColumn>
-                  <OSVersion os={os}></OSVersion>
-                </TableRowColumn>
-              </TableRow>
-            )
-          })
-        }
+        {renderItems({items, navigate})}
       </TableBody>
     </Table>
   )
@@ -80,5 +62,28 @@ function navigate(item) {
   window.history.pushState(item, title, `/performance/${id}`)
 }
 */
+
+function renderItems({items, navigate}) {
+  return items.map((item) => {
+    const {browser, os} = item.env
+    return (
+      <TableRow
+        className='cursorPointer'
+        key={item.id}
+        hoverable={true}
+      >
+        <TableRowColumn>
+          <Timestamp date={item.date}></Timestamp>
+        </TableRowColumn>
+        <TableRowColumn>
+          <BrowserVersion browser={browser}></BrowserVersion>
+        </TableRowColumn>
+        <TableRowColumn>
+          <OSVersion os={os}></OSVersion>
+        </TableRowColumn>
+      </TableRow>
+    )
+  })
+}
 
 export default PerformanceList
