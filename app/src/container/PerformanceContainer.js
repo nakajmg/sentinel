@@ -3,6 +3,7 @@ import {isUndefined} from 'lodash-es'
 import BrowserVersion from '../components/PerformanceList/BrowserVersion'
 import OSVersion from '../components/PerformanceList/OSVersion'
 import Timestamp from '../components/PerformanceList/Timestamp'
+import TimingChart from '../components/Visualize/TimingChart'
 
 /**
  * @param {Object} props
@@ -15,11 +16,16 @@ function PerformanceContainer({store, params}) {
   console.log(JSON.parse(JSON.stringify(data)))
   return (
     <div>
-      <div>
+      <div style={{
+        backgroundColor: 'white',
+        color: 'black',
+        textAlign: 'center'
+      }}>
         <Timestamp date={data.date}></Timestamp>
         <BrowserVersion browser={data.env.browser}></BrowserVersion>
         <OSVersion os={data.env.os}></OSVersion>
       </div>
+      <TimingChart data={data}></TimingChart>
     </div>
   )
 }
