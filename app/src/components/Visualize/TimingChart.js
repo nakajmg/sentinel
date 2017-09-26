@@ -67,7 +67,6 @@ function TimingChart({timing}) {
               return `${high - low}ms`
             }
             else {
-
               return ''
             }
           }
