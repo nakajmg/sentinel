@@ -66,6 +66,7 @@ class Store {
    * @return {Promise}
    */
   _fetchPerfData() {
+    // ToDo json-serverと同じ場所で動かすから /perf だけでよくなる
     return fetch('http://localhost:5889/perf')
       .then(res => res.json())
   }

@@ -1,23 +1,11 @@
 import Sentinel from './Sentinel.js'
 (() => {
   document.addEventListener('DOMContentLoaded', () => {
-    document.querySelector('#post').addEventListener('click', e => {
-      const sentinel = new Sentinel('192.168.0.8')
-      document.querySelector('#patch').addEventListener('click', e => {
-        sentinel.sendPerformanceTiming()
-          .then(console.log)
-      })
+    const sentinel = new Sentinel({serverIp: '192.168.0.8'})
+    document.querySelector('#patch').addEventListener('click', e => {
+      sentinel.sendNavigationTiming()
+        .then(console.log)
+      sentinel.sendResourceTiming()
     })
   })
-  // const res = await postData()
-  // const json = await getData()
-  // console.log(json)
 })()
-
-/*
-送るデータ
-- timing
-- 日時
-- UA
-
-*/

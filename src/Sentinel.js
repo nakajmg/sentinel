@@ -1,29 +1,29 @@
 import 'whatwg-fetch'
-import nanoid from 'nanoid'
 import UAParser from 'ua-parser-js'
+import {format} from 'date-fns'
 
 export default class Sentinel {
   /**
    * @constructor
    */
-  constructor(ip) {
+  constructor({serverIp}) {
     /**
      * @private
      * @type {string}
      */
-    this.ip = ip
+    this.ip = serverIp
     /**
      * @private
      * @type {string}
      */
-    this.id = nanoid()
+    this.id = ''
     /**
      * @public
      * @type {string}
      */
     this.url = `http://${this.ip}:5889/perf`
 
-    this._initializePerfData({url: this.url, id: this.id})
+    this._initializePerfData({url: this.url})
   }
 
   /**
@@ -31,10 +31,22 @@ export default class Sentinel {
    * @return {Promise<Object, Error>}
    * @desc Send performance.timing
    */
-  sendPerformanceTiming() {
+  sendNavigationTiming() {
     const url = `${this.url}/${this.id}`
     return this._patch(url, {
-      timing: window.performance.timing
+      navigationTiming: window.performance.timing
+    })
+  }
+
+  /**
+   * @public
+   * @return {Promise<Object, Error>}
+   * @desc Send Resource Timing
+   */
+  sendResourceTiming() {
+    const url = `${this.url}/${this.id}`
+    return this._patch(url, {
+      resourceTiming: window.performance.getEntriesByType('resource')
     })
   }
 
@@ -42,16 +54,19 @@ export default class Sentinel {
    * @private
    * @param {Object} param
    * @param {string} param.url
-   * @param {string} param.id
    * @return {Promise<Object, Error>}
    */
-  _initializePerfData({url, id}) {
+  _initializePerfData({url}) {
     const ua = new UAParser(window.navigator.userAgent)
+    const env = ua.getResult()
+    const date = Date.now()
+    const id = `${format(date, 'YYYYMMDDHHmmss')} ${env.browser.name}${env.browser.major} ${env.os.name}`.replace(/\s/g, '_')
+    this.id = id
     const json = {
       id,
-      timing: {},
-      date: Date.now(),
-      env: ua.getResult()
+      date,
+      env,
+      ip: this.ip
     }
     return this._post(url, json)
   }
@@ -106,7 +121,4 @@ export default class Sentinel {
   _request(url, options = {}) {
     return fetch(url, options).then(res => res.json())
   }
-
 }
-
-// fetch('http://localhost:5889/timing?_sort=id&_order=desc')
