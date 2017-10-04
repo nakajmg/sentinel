@@ -186,6 +186,29 @@
         "cpu": {}
       },
       "ip": "192.168.0.8"
+    },
+    {
+      "id": "20171004130249_Chrome61_Mac_OS",
+      "date": 1507089769608,
+      "env": {
+        "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36",
+        "browser": {
+          "name": "Chrome",
+          "version": "61.0.3163.100",
+          "major": "61"
+        },
+        "engine": {
+          "name": "WebKit",
+          "version": "537.36"
+        },
+        "os": {
+          "name": "Mac OS",
+          "version": "10.11.5"
+        },
+        "device": {},
+        "cpu": {}
+      },
+      "ip": "192.168.0.8"
     }
   ]
 }
