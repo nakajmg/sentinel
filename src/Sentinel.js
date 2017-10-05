@@ -71,7 +71,7 @@ class Sentinel {
      * @default 'perf'
      * @type {string}
      */
-    this.endPoint = endPoint ? endPoint : '/perf'
+    this.endPoint = endPoint ? endPoint : 'perf'
     /**
      * @private
      * @default false
