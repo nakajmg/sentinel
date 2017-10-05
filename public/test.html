@@ -28,14 +28,14 @@
 <div>
   <button id="patch">patch</button>
 </div>
-<script src="js/client.js"></script>
+<script src="js/Sentinel.js"></script>
 <script>
   (function() {
     document.addEventListener('DOMContentLoaded', () => {
       const sentinel = new Sentinel({serverIp: 'localhost'})
       document.querySelector('#patch').addEventListener('click', e => {
         sentinel.sendNavigationTiming()
-          .then(console.log)
+          .then(console.log);
         sentinel.sendResourceTiming()
       })
     })

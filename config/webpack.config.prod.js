@@ -58,7 +58,7 @@ module.exports = {
   // In production, we only want to load the polyfills and the app code.
   entry: {
     main: [require.resolve('./polyfills'), paths.appIndexJs],
-    client: [require.resolve('./polyfills'), paths.appClientJs]
+    Sentinel: [require.resolve('./polyfills'), paths.appClientJs]
   },
   output: {
     // The build folder.
@@ -263,7 +263,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: false,
       template: paths.appClientHtml,
-      filename: 'client.html',
+      filename: 'test.html',
       chunks: ['client'],
     }),
     // Makes some environment variables available to the JS code, for example:

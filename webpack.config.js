@@ -1,13 +1,21 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
+process.env.BABEL_ENV = 'development'
+process.env.NODE_ENV = 'development'
+
 module.exports = {
   context: __dirname + '/src',
 
   entry: [
-    "whatwg-fetch", "./main.js"
+    "whatwg-fetch", "./Sentinel.js"
   ],
 
   output: {
     path: __dirname + '/static',
-    filename: "client.js"
+    filename: "js/Sentinel.js",
+    library: 'Sentinel',
+    libraryTarget: 'umd',
+    libraryExport: 'default',
   },
 
   module: {
@@ -21,5 +29,13 @@ module.exports = {
         }
       }
     ]
-  }
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: false,
+      template: path.resolve('public/test.html'),
+      filename: 'test.html',
+      chunks: ['client'],
+    })
+  ]
 }

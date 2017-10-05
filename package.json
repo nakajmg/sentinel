@@ -4,11 +4,11 @@
   "private": true,
   "main": "./src/Sentinel.js",
   "scripts": {
+    "start": "run-p server dev watch-client",
     "server": "json-server db.json",
-    "build-client": "webpack",
-    "watch": "webpack --progress --colors --watch",
-    "all": "run-p start watch",
-    "start": "node scripts/start.js",
+    "watch-client": "webpack --progress --colors --watch",
+    "dev-client": "run-p server watch-client",
+    "dev": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "esdoc": "esdoc"
