@@ -6,24 +6,96 @@ class Sentinel {
   /**
    * @constructor
    */
-  constructor({serverIp}) {
+  constructor(options = {}) {
+    this.options = options
     /**
      * @private
-     * @type {string}
+     * @default false
+     * @type {boolean}
      */
-    this.ip = serverIp
+    this.initialized = false
     /**
      * @private
+     * @default ''
      * @type {string}
      */
     this.id = ''
-    /**
-     * @public
-     * @type {string}
-     */
-    this.url = `http://${this.ip}:5889/perf`
 
     this._initializePerfData({url: this.url})
+  }
+
+  /**
+   * @public
+   * @property {string} protocol
+   * @property {string} serverIP
+   * @property {string} endPoint
+   * @property {number} port
+   * @property {boolean} observable
+   * @return {Object}
+   */
+  get options() {
+    return {
+      protocol: this.protocol,
+      serverIP: this.serverIP,
+      port: this.port,
+      endPoint: this.endPoint,
+      observable: this.observable
+    }
+  }
+  /**
+   * @public
+   * @param {Object} parameters
+   */
+  set options(parameters) {
+    let {protocol, serverIP, port, endPoint, observable} = parameters
+    /**
+     * @private
+     * @default 'http'
+     * @type {string}
+     */
+    this.protocol = protocol ? protocol : 'http'
+    /**
+     * @private
+     * @default 'localhost'
+     * @type {string}
+     */
+    this.serverIP = serverIP ? serverIP : 'localhost'
+    /**
+     * @private
+     * @default 5889
+     * @type {number}
+     */
+    this.port = port ? port : 5889
+    /**
+     * @private
+     * @default 'perf'
+     * @type {string}
+     */
+    this.endPoint = endPoint ? endPoint : '/perf'
+    /**
+     * @private
+     * @default false
+     * @type {boolean}
+     */
+    this.observable = observable ? observable : false
+  }
+
+  /**
+   * @public
+   * @default http://localhost:5889/perf
+   * @type {string}
+   */
+  get url() {
+    const {protocol, serverIP, port, endPoint} = this.options
+    return `${protocol}://${serverIP}:${port}/${endPoint}`
+  }
+
+  /**
+   * @public
+   * @return {string}
+   */
+  get itemURL() {
+    return `${this.url}/${this.id}`
   }
 
   /**
@@ -32,8 +104,7 @@ class Sentinel {
    * @desc Send performance.timing
    */
   sendNavigationTiming() {
-    const url = `${this.url}/${this.id}`
-    return this._patch(url, {
+    return this._patch(this.itemURL, {
       navigationTiming: window.performance.timing
     })
   }
@@ -44,8 +115,7 @@ class Sentinel {
    * @desc Send Resource Timing
    */
   sendResourceTiming() {
-    const url = `${this.url}/${this.id}`
-    return this._patch(url, {
+    return this._patch(this.itemURL, {
       resourceTiming: window.performance.getEntriesByType('resource')
     })
   }
@@ -56,7 +126,7 @@ class Sentinel {
    * @param {string} param.url
    * @return {Promise<Object, Error>}
    */
-  _initializePerfData({url}) {
+  async _initializePerfData({url}) {
     const ua = new UAParser(window.navigator.userAgent)
     const env = ua.getResult()
     const date = Date.now()
@@ -65,10 +135,11 @@ class Sentinel {
     const json = {
       id,
       date,
-      env,
-      ip: this.ip
+      env
     }
-    return this._post(url, json)
+    await this._post(url, json)
+    this.initialized = true
+    console.log(this)
   }
 
   /**

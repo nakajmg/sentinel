@@ -32,10 +32,10 @@
 <script>
   (function() {
     document.addEventListener('DOMContentLoaded', () => {
-      const sentinel = new Sentinel({serverIp: 'localhost'})
+      const sentinel = new Sentinel()
       document.querySelector('#patch').addEventListener('click', e => {
         sentinel.sendNavigationTiming()
-          .then(console.log);
+          .then(console.log)
         sentinel.sendResourceTiming()
       })
     })
