@@ -36,6 +36,7 @@ module.exports = {
       template: path.resolve('public/test.html'),
       filename: 'test.html',
       chunks: ['client'],
+      timestamp: Date.now()
     })
   ]
 }

@@ -1,6 +1,8 @@
 import 'whatwg-fetch'
 import UAParser from 'ua-parser-js'
-import {format} from 'date-fns'
+import format from 'date-fns/format'
+import debounce from 'lodash-es/debounce'
+import filter from 'lodash-es/filter'
 
 class Sentinel {
   /**
@@ -26,12 +28,12 @@ class Sentinel {
 
   /**
    * @public
+   * @type {Object}
    * @property {string} protocol
    * @property {string} serverIP
    * @property {string} endPoint
    * @property {number} port
    * @property {boolean} observable
-   * @return {Object}
    */
   get options() {
     return {
@@ -113,11 +115,15 @@ class Sentinel {
    * @public
    * @return {Promise<Object, Error>}
    * @desc Send Resource Timing
+   * ToDo 3種類送信するメソッドに🐸
    */
   sendResourceTiming() {
-    return this._patch(this.itemURL, {
-      resourceTiming: window.performance.getEntriesByType('resource')
+    const resource = window.performance.getEntriesByType('resource')
+    const resourceTiming = filter(resource, (item) => {
+      return item.name.indexOf(this.url) === -1
     })
+    console.log(resourceTiming)
+    return this._patch(this.itemURL, {resourceTiming})
   }
 
   /**
@@ -138,8 +144,51 @@ class Sentinel {
       env
     }
     await this._post(url, json)
+    this.enablePerformanceObserver()
     this.initialized = true
-    console.log(this)
+  }
+
+  /**
+   * @public
+   * @param {boolean} force - to force enable PerformanceObserver
+   */
+  enablePerformanceObserver(force) {
+    if (this.options.observable === false && force !== true) return
+    if (window.PerformanceObserver === undefined) return
+
+    const _report = debounce(async () => {
+      this._stopObserve()
+      await this.sendResourceTiming()
+      this._startObserve()
+    }, 1000)
+
+    this.observer = this.observer || new window.PerformanceObserver(_report)
+    this._startObserve()
+  }
+
+  /**
+   * @public
+   */
+  disablePerformanceObserver() {
+    this._stopObserve()
+  }
+
+  /**
+   * @private
+   */
+  _startObserve() {
+    if (!this.observer) return
+    this.observer.observe({
+      entryTypes: ['resource', 'mark', 'measure']
+    })
+  }
+
+  /**
+   * @private
+   */
+  _stopObserve() {
+    if (!this.observer) return
+    this.observer.disconnect()
   }
 
   /**
