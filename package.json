@@ -2,6 +2,7 @@
   "name": "app",
   "version": "0.1.0",
   "private": true,
+  "main": "./src/Sentinel.js",
   "scripts": {
     "server": "json-server db.json",
     "build-client": "webpack",
