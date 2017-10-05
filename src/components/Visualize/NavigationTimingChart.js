@@ -11,7 +11,7 @@ import {
 HighchartsMore(ReactHighcharts.Highcharts)
 
 function TimingChart({data}) {
-  if (isUndefined(data) || isUndefined(data.navigationTiming)) return <div>timingなし</div>
+  if (isUndefined(data) || isUndefined(data.timing)) return <div>timingなし</div>
 
   const {
     navigationStart,
@@ -35,7 +35,7 @@ function TimingChart({data}) {
     secureConnectionStart,
     requestStart,
     domInteractive
-  } = data.navigationTiming
+  } = data.timing
 
   const timing = [
     {
