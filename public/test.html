@@ -28,9 +28,8 @@
     document.addEventListener('DOMContentLoaded', () => {
       const sentinel = new Sentinel({observable: true})
       document.querySelector('#patch').addEventListener('click', e => {
-        sentinel.sendNavigationTiming()
+        sentinel.sendTiming()
           .then(console.log)
-        sentinel.sendResourceTiming()
       })
     })
   })()
