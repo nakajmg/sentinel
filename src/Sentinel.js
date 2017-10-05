@@ -2,7 +2,7 @@ import 'whatwg-fetch'
 import UAParser from 'ua-parser-js'
 import {format} from 'date-fns'
 
-export default class Sentinel {
+class Sentinel {
   /**
    * @constructor
    */
@@ -122,3 +122,5 @@ export default class Sentinel {
     return fetch(url, options).then(res => res.json())
   }
 }
+
+export default Sentinel
