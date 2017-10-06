@@ -140,7 +140,7 @@
     ]
   },
   "proxy": {
-    "/perf": {
+    "^/perf$": {
       "target": "http://localhost:5889"
     }
   }
