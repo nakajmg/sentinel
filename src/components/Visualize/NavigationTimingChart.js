@@ -9,6 +9,54 @@ import {
 } from 'lodash-es'
 
 HighchartsMore(ReactHighcharts.Highcharts)
+ReactHighcharts.Highcharts.setOptions({
+    'colors': ['#F92672', '#66D9EF', '#A6E22E', '#A6E22E'],
+    'chart': {
+      'backgroundColor': '#272822',
+      'style': {
+        'fontFamily': 'Inconsolata',
+        'color': '#A2A39C'
+      }
+    },
+    'title': {
+      'style': {
+        'color': '#A2A39C'
+      },
+      'align': 'left'
+    },
+    'subtitle': {
+      'style': {
+        'color': '#A2A39C'
+      },
+      'align': 'left'
+    },
+    'legend': {
+      'align': 'right',
+      'verticalAlign': 'bottom',
+      'itemStyle': {
+        'fontWeight': 'normal',
+        'color': '#A2A39C'
+      }
+    },
+    'xAxis': {
+      'gridLineDashStyle': 'Dot',
+      'gridLineWidth': 1,
+      'gridLineColor': '#A2A39C',
+      'lineColor': '#A2A39C',
+      'minorGridLineColor': '#A2A39C',
+      'tickColor': '#A2A39C',
+      'tickWidth': 1
+    },
+    'yAxis': {
+      'gridLineDashStyle': 'Dot',
+      'gridLineColor': '#A2A39C',
+      'lineColor': '#A2A39C',
+      'minorGridLineColor': '#A2A39C',
+      'tickColor': '#A2A39C',
+      'tickWidth': 1
+    }
+  }
+)
 
 function TimingChart({data}) {
   if (isUndefined(data) || isUndefined(data.timing)) return <div>timingなし</div>
@@ -122,7 +170,8 @@ function TimingChart({data}) {
     chart: {
       type: 'columnrange',
       inverted: true,
-      height: 250
+      height: 250,
+      margin: 30
     },
 
     title: {
