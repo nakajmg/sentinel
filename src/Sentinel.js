@@ -156,7 +156,7 @@ class Sentinel {
   sendResource() {
     function reduceEntriesByName(entries) {
       return filter(entries, (entry) => {
-        return entry.name.indexOf(this.url) === -1
+        return !~entry.name.indexOf(this.url)
       })
     }
     const _resource = window.performance.getEntriesByType('resource')
