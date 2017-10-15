@@ -1,63 +1,8 @@
 import React from 'react'
-import ReactHighcharts from 'react-highcharts'
-import HighchartsMore from 'highcharts/highcharts-more'
 import {
-  isUndefined,
-  map,
-  sortBy,
-  filter
+  isUndefined
 } from 'lodash-es'
 import TimeLine from './TimeLine'
-
-HighchartsMore(ReactHighcharts.Highcharts)
-ReactHighcharts.Highcharts.setOptions({
-    'colors': ['#F92672', '#66D9EF', '#A6E22E', '#A6E22E'],
-    'chart': {
-      'backgroundColor': '#272822',
-      'style': {
-        'fontFamily': 'Inconsolata',
-        'color': '#A2A39C'
-      }
-    },
-    'title': {
-      'style': {
-        'color': '#A2A39C'
-      },
-      'align': 'left'
-    },
-    'subtitle': {
-      'style': {
-        'color': '#A2A39C'
-      },
-      'align': 'left'
-    },
-    'legend': {
-      'align': 'right',
-      'verticalAlign': 'bottom',
-      'itemStyle': {
-        'fontWeight': 'normal',
-        'color': '#A2A39C'
-      }
-    },
-    'xAxis': {
-      'gridLineDashStyle': 'Dot',
-      'gridLineWidth': 1,
-      'gridLineColor': '#A2A39C',
-      'lineColor': '#A2A39C',
-      'minorGridLineColor': '#A2A39C',
-      'tickColor': '#A2A39C',
-      'tickWidth': 1
-    },
-    'yAxis': {
-      'gridLineDashStyle': 'Dot',
-      'gridLineColor': '#A2A39C',
-      'lineColor': '#A2A39C',
-      'minorGridLineColor': '#A2A39C',
-      'tickColor': '#A2A39C',
-      'tickWidth': 1
-    }
-  }
-)
 
 function TimingChart({data}) {
   if (isUndefined(data) || isUndefined(data.navigationTiming)) return <div>timingなし</div>
@@ -161,82 +106,9 @@ function TimingChart({data}) {
     }
   ]
 
-  // endがないやつを省いてstartの時間でソート
-  const sorted = sortBy(filter(timing, ({end}) => end), ['start'])
-  const categories = map(sorted, ({label}) => label)
-  const seriesData = map(sorted, ({start, duration}) => {
-    return [start, start + duration]
-  })
-  const config = {
-    chart: {
-      type: 'columnrange',
-      inverted: true,
-      height: 250,
-      margin: 30
-    },
-
-    title: {
-      text: 'Navigation Timing'
-    },
-
-    xAxis: {
-      categories
-    },
-
-    yAxis: {
-      title: {
-        text: 'ms'
-      },
-      min: 0
-    },
-
-    tooltip: {
-      valueSuffix: 'ms',
-      formatter() {
-        const {high, low} = this.point
-        return `<div>
-          <b>${this.x}</b><br>
-          <span>Duration: <b>${high-low}ms</b></span><br>
-          <span>Start   : <b>${low}ms</b></span><br>
-          <span>End     : <b>${high}ms</b></span>
-        </div>`
-      }
-    },
-
-    plotOptions: {
-      columnrange: {
-        dataLabels: {
-          enabled: true,
-          formatter({align}) {
-            const {high, low} = this.point
-            if (high - low === 0 && align === 'right') {
-              return `<div style="color: ${this.color}">◆</div>`
-            }
-            if (this.y === high && high - low !== 0) {
-              return `${high - low}ms`
-            }
-            else {
-              return ''
-            }
-          }
-        }
-      }
-    },
-
-    legend: {
-      enabled: false
-    },
-
-    series: [{
-      name: 'Duration',
-      data: seriesData
-    }]
-  }
-
   return (
     <div>
       <TimeLine timing={timing} title={"Navigation Timing"}></TimeLine>
-      <ReactHighcharts config={config}></ReactHighcharts>
     </div>
   )
 }

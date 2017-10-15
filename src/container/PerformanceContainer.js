@@ -18,11 +18,14 @@ function PerformanceContainer({store, params}) {
   return (
     <div>
       <div style={{
-        backgroundColor: 'white',
-        color: 'black',
-        textAlign: 'center'
+        backgroundColor: '#333',
+        color: '#fff',
+        textAlign: 'center',
+        display: 'flex',
+        alignItems: 'center',
+        fontSize: '14px',
+        padding: '10px',
       }}>
-        <Timestamp date={data.date}></Timestamp>
         <BrowserVersion browser={data.env.browser}></BrowserVersion>
         <OSVersion os={data.env.os}></OSVersion>
       </div>

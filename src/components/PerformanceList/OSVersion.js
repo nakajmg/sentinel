@@ -1,5 +1,5 @@
 import React from 'react'
-import iconMacos from '../../img/macos.svg'
+import iconMacos from '../../img/apple.svg'
 import iconWindows from '../../img/win.svg'
 import iconIOS from '../../img/ios.svg'
 import iconAndroid from '../../img/android.svg'
@@ -12,10 +12,11 @@ import iconAndroid from '../../img/android.svg'
  */
 function OSVersion ({os}){
   const {name, version} = os
-  const style = {
-    width: '20px',
-    height: '20px',
-    verticalAlign: 'bottom'
+  const iconStyle = {
+    width: '3em',
+    height: 'auto',
+    display: 'block',
+    paddingRight: '10px',
   }
   let icon
   switch (name.toLowerCase()) {
@@ -35,8 +36,13 @@ function OSVersion ({os}){
       icon = iconWindows
   }
   return (
-    <span>
-      <img src={icon} style={style} alt={name}/>
+    <span style={{
+      display: 'flex',
+      alignItems: 'center',
+    }}>
+      <span>
+        <img src={icon} style={iconStyle} alt={name}/>
+      </span>
       <span> {version}</span>
     </span>
   )

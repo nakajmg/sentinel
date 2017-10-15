@@ -33,9 +33,9 @@ function PerformanceList({items, router}) {
     }}>
       <TableHeader displaySelectAll={false}>
         <TableRow selectable={true}>
-          <TableHeaderColumn>Date</TableHeaderColumn>
           <TableHeaderColumn>Browser</TableHeaderColumn>
           <TableHeaderColumn>OS</TableHeaderColumn>
+          <TableHeaderColumn>Date</TableHeaderColumn>
         </TableRow>
       </TableHeader>
       <TableBody
@@ -73,13 +73,13 @@ function renderItems({items, navigate}) {
         hoverable={true}
       >
         <TableRowColumn>
-          <Timestamp date={item.date}></Timestamp>
-        </TableRowColumn>
-        <TableRowColumn>
           <BrowserVersion browser={browser}></BrowserVersion>
         </TableRowColumn>
         <TableRowColumn>
           <OSVersion os={os}></OSVersion>
+        </TableRowColumn>
+        <TableRowColumn>
+          <Timestamp date={item.date}></Timestamp>
         </TableRowColumn>
       </TableRow>
     )

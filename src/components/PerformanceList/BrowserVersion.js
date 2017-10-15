@@ -13,10 +13,11 @@ import iconBrowser from '../../img/browser.svg'
  */
 function BrowserVersion({browser}) {
   const {name, version} = browser
-  const style = {
-    width: '20px',
-    height: '20px',
-    verticalAlign: 'bottom'
+  const iconStyle = {
+    width: '3em',
+    height: 'auto',
+    display: 'block',
+    paddingRight: '10px',
   }
   let icon
   switch (name.toLowerCase()) {
@@ -39,8 +40,13 @@ function BrowserVersion({browser}) {
       icon = iconBrowser
   }
   return (
-    <span>
-      <img src={icon} style={style} alt={name}/>
+    <span style={{
+      display: 'flex',
+      alignItems: 'center',
+    }}>
+      <span>
+        <img src={icon} style={iconStyle} alt={name}/>
+      </span>
       <span> {`${version}`}</span>
     </span>
   )
