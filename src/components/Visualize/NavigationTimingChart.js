@@ -7,6 +7,7 @@ import {
   sortBy,
   filter
 } from 'lodash-es'
+import TimeLine from './TimeLine'
 
 HighchartsMore(ReactHighcharts.Highcharts)
 ReactHighcharts.Highcharts.setOptions({
@@ -59,7 +60,7 @@ ReactHighcharts.Highcharts.setOptions({
 )
 
 function TimingChart({data}) {
-  if (isUndefined(data) || isUndefined(data.timing)) return <div>timingなし</div>
+  if (isUndefined(data) || isUndefined(data.navigationTiming)) return <div>timingなし</div>
 
   const {
     navigationStart,
@@ -83,7 +84,7 @@ function TimingChart({data}) {
     secureConnectionStart,
     requestStart,
     domInteractive
-  } = data.timing
+  } = data.navigationTiming
 
   const timing = [
     {
@@ -234,6 +235,7 @@ function TimingChart({data}) {
 
   return (
     <div>
+      <TimeLine timing={timing} title={"Navigation Timing"}></TimeLine>
       <ReactHighcharts config={config}></ReactHighcharts>
     </div>
   )
