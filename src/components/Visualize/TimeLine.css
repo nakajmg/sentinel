@@ -1,0 +1,90 @@
+.TimeLine {
+  background-color: #333;
+  padding: 10px 5px;
+  font-size: 14px;
+  position: relative;
+}
+.TimeLine-Title {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.TimeLine-Range {
+  display: flex;
+  font-size: 12px;
+}
+  .TimeLine-Range__Min {
+  
+  }
+  .TimeLine-Range__Max {
+    margin-left: auto;
+    text-align: right;
+  }
+  .TimeLine-Range__Min:before,
+  .TimeLine-Range__Max:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: calc(100% - 50px);
+    border-right: 1px solid rgba(255, 255, 255, .2);
+    position: absolute;
+    bottom: 10px;
+    left: 9px;
+  }
+  .TimeLine-Range__Max:before {
+    left: initial;
+    right: 9px;
+  }
+
+.TimeLine-Timing {
+  display: flex;
+  align-items: center;
+  font-family: "Signika Negative";
+  padding: 5px 5px;
+  border-top: 1px dotted rgba(255, 255, 255, .2);
+}
+.TimeLine-Timing:last-of-type {
+  border-bottom: 1px dotted rgba(255, 255, 255, .2);
+}
+
+  .TimeLine-Timing__Info {
+    display: inline-block;
+    border-radius: 0;
+    text-align: right;
+    padding: 0 3px 0 0;
+    box-sizing: border-box;
+    white-space: nowrap;
+    position: relative;
+    margin-left: 1px;
+    text-shadow: 1px 1px rgba(0,0,0,0.1);
+  }
+    .TimeLine-Timing__Detail {
+      display: none;
+      position: absolute;
+      margin: auto;
+      bottom: 50%;
+      left: 50%;
+      padding: 2px 5px;
+      background-color: currentColor;
+      z-index: 1;
+      box-shadow: 2px 2px 2px 0 rgba(0, 0, 0, .5);
+      border: 1px dashed rgba(255, 255, 255, .4);
+    }
+    .TimeLine-Timing__Info:hover .TimeLine-Timing__Detail {
+      display: block;
+    }
+      .TimeLine-Timing__Detail-Content {
+        text-align: right;
+        font-size: 13px;
+        color: #fff;
+      }
+  
+  .TimeLine-Timing__Label {
+    color: #F3F3F3;
+    font-weight: lighter;
+    padding-left: 5px;
+  }
+  .TimeLine-Timing__Duration {
+    color: #F3F3F3;
+    padding-left: 5px;
+  }
+  
