@@ -4,23 +4,17 @@ import iconSafari from '../../img/safari.svg'
 import iconFirefox from '../../img/mozilla.svg'
 import iconIE from '../../img/explorer.svg'
 import iconBrowser from '../../img/browser.svg'
+import './BrowserVersion.css'
 
 /**
  * @param {Object} props
  * @param {string} props.name - browser names which provide from ua-parser
  * @param {string} props.version - browser versions which provide from ua-parser
- * @return {element}
  * @example
  * <BrowserVersion browser={browser} />
  */
 function BrowserVersion({browser}) {
   const {name, version} = browser
-  const iconStyle = {
-    width: '3em',
-    height: 'auto',
-    display: 'block',
-    paddingRight: '10px',
-  }
   let icon
   switch (name.toLowerCase()) {
     case 'chrome':
@@ -42,12 +36,9 @@ function BrowserVersion({browser}) {
       icon = iconBrowser
   }
   return (
-    <span style={{
-      display: 'flex',
-      alignItems: 'center',
-    }}>
-      <span>
-        <img src={icon} style={iconStyle} alt={name}/>
+    <span className="BrowserVersion">
+      <span className="BrowserVersion-Icon">
+        <img src={icon} alt={name}/>
       </span>
       <span> {`${version}`}</span>
     </span>

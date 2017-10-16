@@ -3,23 +3,17 @@ import iconMacos from '../../img/apple.svg'
 import iconWindows from '../../img/win.svg'
 import iconIOS from '../../img/ios.svg'
 import iconAndroid from '../../img/android.svg'
+import './OSVersion.css'
 
 /**
  * @param {Object} props
  * @param {string} props.name - OS names which provide from ua-parser
  * @param {string} props.version - OS versions which provide from ua-parser
- * @return {element}
  * @example
  * <OSVersion os={os} />
  */
 function OSVersion ({os}){
   const {name, version} = os
-  const iconStyle = {
-    width: '3em',
-    height: 'auto',
-    display: 'block',
-    paddingRight: '10px',
-  }
   let icon
   switch (name.toLowerCase()) {
     case 'ios':
@@ -38,12 +32,9 @@ function OSVersion ({os}){
       icon = iconWindows
   }
   return (
-    <span style={{
-      display: 'flex',
-      alignItems: 'center',
-    }}>
-      <span>
-        <img src={icon} style={iconStyle} alt={name}/>
+    <span className="OSVersion">
+      <span className="OSVersion-Icon">
+        <img src={icon} alt={name}/>
       </span>
       <span> {version}</span>
     </span>

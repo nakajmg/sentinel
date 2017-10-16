@@ -1,0 +1,17 @@
+.BrowserVersion {
+  display: inline-flex;
+  align-items: center;
+  background-color: #434857;
+  font-size: 0.8em;
+  padding: 0.5em 0.5em;
+  border-radius: 2px;
+  border: 1px solid #434857;
+  line-height: 1.25;
+}
+
+.BrowserVersion-Icon img{
+  width: 2em;
+  height: auto;
+  display: block;
+  padding-right: 5px;
+}

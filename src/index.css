@@ -1,7 +1,9 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
-  color: #fff;
+  font-family: "Roboto", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #cfd2da;
+  font-size: 1rem;
+  line-height: 1.5;
   background-color: #252830;
 }

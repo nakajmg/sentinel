@@ -1,0 +1,17 @@
+.PerformanceContainer {
+
+}
+
+.PerformanceContainer-Env {
+  display: flex;
+  align-items: stretch;
+  justify-content: flex-end;
+  padding: 10px;
+}
+  .PerformanceContainer-Env > *:nth-child(2) {
+    margin: 0 10px;
+  }
+
+.PerformanceContainer-NavigationTiming {
+  padding: 10px;
+}

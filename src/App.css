@@ -16,3 +16,9 @@
 .cursorPointer {
   cursor: pointer;
 }
+
+.App-Splitter {
+  margin-bottom: 1em;
+  border: 0;
+  border-top: 1px solid #434857;
+}
