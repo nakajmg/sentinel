@@ -24,13 +24,13 @@ function PerformanceContainer({store, params}) {
     padding: '0.5em',
   }
   return (
-    <div className="PerformanceContainer">
-      <div className="PerformanceContainer-Env">
+    <div className="PerformanceContainer GridContainer">
+      <div className="PerformanceContainer-Env GridItem-Column2">
         <BrowserVersion style={style} browser={data.env.browser} />
         <OSVersion style={style} os={data.env.os} />
         <Timestamp style={style} date={data.date} />
       </div>
-      <div className="PerformanceContainer-NavigationTiming">
+      <div className="PerformanceContainer-NavigationTiming GridItem-Column1">
         <TimeLine timing={timing} title={"Navigation Timing"} />
       </div>
     </div>

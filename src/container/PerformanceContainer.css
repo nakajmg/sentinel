@@ -4,14 +4,29 @@
 
 .PerformanceContainer-Env {
   display: flex;
-  align-items: stretch;
-  justify-content: flex-end;
+  flex-direction: column;
+  /*align-items: stretch;*/
+  /*justify-content: flex-end;*/
   padding: 10px;
 }
-  .PerformanceContainer-Env > *:nth-child(2) {
-    margin: 0 10px;
+  .PerformanceContainer-Env > * {
+    margin-bottom: 3px;
   }
 
 .PerformanceContainer-NavigationTiming {
   padding: 10px;
 }
+
+.GridContainer {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+}
+
+  .GridItem-Column1 {
+    grid-row: 1;
+    grid-column: 1;
+  }
+  .GridItem-Column2 {
+    grid-row: 1;
+    grid-column: 2;
+  }
