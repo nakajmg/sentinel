@@ -18,7 +18,7 @@ class RouterView extends Component {
     const Component = route.component
     const params = route.params
     return (
-      <div className="fadein" ref={div => this.el = div}>
+      <div className="fadein App-RouterView" ref={div => this.el = div}>
         <Component params={params} store={store}></Component>
       </div>
     )

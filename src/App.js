@@ -3,6 +3,7 @@ import {observer, inject} from 'mobx-react'
 import {propTypes} from './store'
 import RouterView from './router/RouterView'
 import FA from 'react-fontawesome'
+import './App.css'
 
 /**
  * App
@@ -15,7 +16,7 @@ class App extends Component {
    */
   render() {
     return (
-      <div>
+      <div className="App-Container">
         <div className="App-Header" title="SENTINEL">
           <a className="App-HeaderLink"
             onClick={() => {
@@ -27,7 +28,7 @@ class App extends Component {
             </span>
           </a>
         </div>
-        <RouterView></RouterView>
+        <RouterView className="RouterView"></RouterView>
       </div>
     )
   }

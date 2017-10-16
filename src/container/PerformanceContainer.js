@@ -4,6 +4,7 @@ import BrowserVersion from '../components/PerformanceList/BrowserVersion'
 import OSVersion from '../components/PerformanceList/OSVersion'
 import Timestamp from '../components/PerformanceList/Timestamp'
 import TimeLine from '../components/Visualize/TimeLine'
+import ResourceTimingList from '../components/ResourceTimingList'
 import formatNavigationTiming from '../util/formatNavigationTiming'
 import './PerformanceContainer.css'
 
@@ -32,6 +33,7 @@ function PerformanceContainer({store, params}) {
       </div>
       <div className="PerformanceContainer-NavigationTiming GridItem-Column1">
         <TimeLine timing={timing} title={"Navigation Timing"} />
+        {/*<ResourceTimingList resource={data.resource} />*/}
       </div>
     </div>
   )

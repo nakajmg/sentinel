@@ -154,7 +154,7 @@ class Sentinel {
    * @desc Send resource entries
    */
   sendResource() {
-    function reduceEntriesByName(entries) {
+    const reduceEntriesByName = (entries) => {
       return filter(entries, (entry) => {
         return !~entry.name.indexOf(this.url)
       })

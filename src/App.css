@@ -1,9 +1,20 @@
-.App-Header {
-  background-color: #1a1c22;
-  padding: 10px 10px;
-  font-size: 18px;
-  color: white;
+.App-Container {
+  height: 100%;
+  display: grid;
+  grid-template-rows: 50px 1fr;
 }
+  .App-Header {
+    background-color: #1a1c22;
+    padding: 10px 15px;
+    font-size: 18px;
+    color: white;
+    grid-row: 1;
+  }
+
+
+  .App-RouterView {
+    grid-row: 2;
+  }
 
 .App-HeaderLink {
   cursor: pointer;

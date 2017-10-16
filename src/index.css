@@ -6,4 +6,9 @@ body {
   font-size: 1rem;
   line-height: 1.5;
   background-color: #252830;
+  height: 100vh;
+}
+
+#root {
+  height: 100%;
 }

@@ -5,7 +5,7 @@ import isUndefined from 'lodash-es/isUndefined'
  * @return {Array | null}
  */
 function formatNavigationTiming (data) {
-  if (isUndefined(data) || isUndefined(data.navigationTiming)) return null
+  if (isUndefined(data) || isUndefined(data.timing)) return null
 
   const {
     navigationStart,
@@ -29,7 +29,7 @@ function formatNavigationTiming (data) {
     secureConnectionStart,
     requestStart,
     domInteractive
-  } = data.navigationTiming
+  } = data.timing
 
   const timing = [
     {
@@ -70,8 +70,8 @@ function formatNavigationTiming (data) {
     },
     {
       label: 'Unload',
-      start: unloadEventStart - navigationStart,
-      end: unloadEventEnd - navigationStart,
+      start: unloadEventStart ? unloadEventStart - navigationStart : 0,
+      end: unloadEventEnd ? unloadEventEnd - navigationStart : 0,
       duration: unloadEventEnd - unloadEventStart
     },
     {

@@ -30,6 +30,8 @@
       document.querySelector('#patch').addEventListener('click', e => {
         sentinel.sendTiming()
           .then(console.log)
+        sentinel.sendResource()
+          .then(console.log)
       })
     })
   })()
