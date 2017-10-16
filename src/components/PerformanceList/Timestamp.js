@@ -7,7 +7,7 @@ import {format} from 'date-fns'
  * @return {element}
  */
 function Timestamp({date}) {
-  const timestamp = format(date, 'YYYY-MM-DD hh:mm:ss')
+  const timestamp = format(date, 'YYYY/MM/DD hh:mm:ss')
   return (
     <span>
       {timestamp}

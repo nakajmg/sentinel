@@ -24,6 +24,9 @@ import If from '../If'
 //  ]
 //})
 
+/**
+ * @public
+ */
 class TimeLine extends Component {
 
   get sortedTiming() {
@@ -52,20 +55,18 @@ class TimeLine extends Component {
     switch(digit) {
       case 2:
         cardinal = 5
-        max += max % cardinal ? 2 * cardinal - (max % cardinal) : cardinal
-        min -= min % cardinal
         break
       case 3:
         cardinal = 10
-        max += max % cardinal ? 2 * cardinal - (max % cardinal) : cardinal
-        min -= min % cardinal
         break
       case 4:
         cardinal = 100
-        max += max % cardinal ? 2 * cardinal - (max % cardinal) : cardinal
-        min -= min % cardinal
         break
+      default:
+        cardinal = 1
     }
+    max += max % cardinal ? 2 * cardinal - (max % cardinal) : cardinal
+    min -= min % cardinal
     // durationが 200以下なら10区切り 20以下なら1区切りとかでよさそう
     const scale = range(min, max + cardinal, cardinal)
     const duration = max - min
@@ -85,21 +86,32 @@ class TimeLine extends Component {
     return <div className="TimeLine">
       <div className="TimeLine-Content">
         <div className="TimeLine-Title">{this.title}</div>
-        <div>
-        {
-          this.sortedTiming.map(({label, start, end}) => {
+        <Graph range={range} timing={this.sortedTiming} color={color}></Graph>
+        <RangeScale range={range}></RangeScale>
+      </div>
+    </div>
+  }
+}
+
+function Graph({range, timing, color}) {
+  return (
+    <div>
+      {
+        timing.map(({label, start, end}) => {
           const duration = !end ? 0 : end - start
           const percentage = ((duration ? duration / range.duration : 0) * 100)
           const point = ((start ? start / range.duration : 0) * 100) + '%'
           return (
             <div key={label} className="TimeLine-Timing">
-              <span style={{ width: point }}>
+              <span className="TimeLine-Timing__Spacer" style={{ width: point }}>
               </span>
-              <span className="TimeLine-Timing__Info" style={{
-                width: percentage ? `${percentage}%` : '4px',
-                backgroundColor: duration ? color.green : color.blue,
-                color: duration ? color.green : color.blue,
-              }}>
+              <span className="TimeLine-Timing__Info"
+                style={{
+                  width: percentage ? `${percentage}%` : '4px',
+                  backgroundColor: duration ? color.green : color.blue,
+                  color: duration ? color.green : color.blue,
+                }}
+              >
                 <span className="TimeLine-Timing__Duration">
                   {duration ? `${duration}ms` : ''}
                 </span>
@@ -120,37 +132,36 @@ class TimeLine extends Component {
               </span>
             </div>
           )
-          })
-        }
-        </div>
-        <div className="TimeLine-Range">
-          {/*<div className="TimeLine-Range__Scale TimeLine-Range__Min">{range.min}</div>*/}
-          {
-            range.scale.map((scale) => {
-              const point = (scale / range.duration) * 100
-              const digit = Math.log10(scale) + 1 | 0
-              const left = digit >= 2 ? `calc(${point}% - ${1 - 1 / digit}em)` : `calc(${point}% - 0.25em)`
-              return (
-                <div key={scale} className="TimeLine-Range__Scale" style={{left}}>{scale}</div>
-              )
-            })
-          }
-          {/*<div className="TimeLine-Range__Scale TimeLine-Range__Max">{range.max}</div>*/}
-
-          {/*<div className="TimeLine-Range__Scale-Line TimeLine-Range__Min" style={{left: '0'}}></div>*/}
-          {
-            range.scale.map((scale) => {
-              const point = (scale / range.duration * 100) + '%'
-              return (
-                <div key={scale} className="TimeLine-Range__Scale-Line" style={{left: point}}></div>
-              )
-            })
-          }
-          {/*<div className="TimeLine-Range__Scale-Line" style={{right: '0'}}></div>*/}
-        </div>
-      </div>
+        })
+      }
     </div>
-  }
+  )
 }
+
+function RangeScale({range}) {
+  return (
+    <div className="TimeLine-Range">
+      {
+        range.scale.map((scale) => {
+          const point = (scale / range.duration) * 100
+          const digit = Math.log10(scale) + 1 | 0
+          const left = digit >= 2 ? `calc(${point}% - ${1 - 1 / digit}em)` : `calc(${point}% - 0.25em)`
+          return (
+            <div key={scale} className="TimeLine-Range__Scale" style={{left}}>{scale}</div>
+          )
+        })
+      }
+      {
+        range.scale.map((scale) => {
+          const left = (scale / range.duration * 100) + '%'
+          return (
+            <span key={scale} className="TimeLine-Range__Scale-Line" style={{left}}></span>
+          )
+        })
+      }
+    </div>
+  )
+}
+
 
 export default TimeLine

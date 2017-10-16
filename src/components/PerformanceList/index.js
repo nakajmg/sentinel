@@ -1,12 +1,4 @@
 import React from 'react'
-import {
-  Table,
-  TableBody,
-  TableHeader,
-  TableHeaderColumn,
-  TableRow,
-  TableRowColumn,
-} from 'material-ui/Table';
 import Timestamp from './Timestamp'
 import BrowserVersion from './BrowserVersion'
 import OSVersion from './OSVersion'
@@ -27,25 +19,18 @@ function PerformanceList({items, router}) {
     })
   }
   return (
-    <Table selectable={false} onCellClick={(rowNumber, columnNumber, e) => {
-      const item = items[rowNumber]
-      navigate(item, e)
-    }}>
-      <TableHeader displaySelectAll={false}>
-        <TableRow selectable={true}>
-          <TableHeaderColumn>Browser</TableHeaderColumn>
-          <TableHeaderColumn>OS</TableHeaderColumn>
-          <TableHeaderColumn>Date</TableHeaderColumn>
-        </TableRow>
-      </TableHeader>
-      <TableBody
-        displayRowCheckbox={false}
-        stripedRows={true}
-        showRowHover={true}
-      >
+    <table>
+      <thead>
+        <tr>
+          <th>Browser</th>
+          <th>OS</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
         {renderItems({items, navigate})}
-      </TableBody>
-    </Table>
+      </tbody>
+    </table>
   )
 }
 
@@ -67,21 +52,23 @@ function renderItems({items, navigate}) {
   return items.map((item) => {
     const {browser, os} = item.env
     return (
-      <TableRow
+      <tr
         className='cursorPointer'
         key={item.id}
-        hoverable={true}
+        onClick={(e) => {
+          navigate(item, e)
+        }}
       >
-        <TableRowColumn>
+        <td>
           <BrowserVersion browser={browser}></BrowserVersion>
-        </TableRowColumn>
-        <TableRowColumn>
+        </td>
+        <td>
           <OSVersion os={os}></OSVersion>
-        </TableRowColumn>
-        <TableRowColumn>
+        </td>
+        <td>
           <Timestamp date={item.date}></Timestamp>
-        </TableRowColumn>
-      </TableRow>
+        </td>
+      </tr>
     )
   })
 }

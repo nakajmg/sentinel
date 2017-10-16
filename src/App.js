@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import {observer, inject} from 'mobx-react'
 import {propTypes} from './store'
-import {AppBar} from 'material-ui'
-import {grey800} from 'material-ui/styles/colors'
 import RouterView from './router/RouterView'
 
 /**
@@ -16,17 +14,12 @@ class App extends Component {
    */
   render() {
     return (
-      <div style={{
-        backgroundColor: grey800,
-        height: '100vh'
-      }}>
-        <AppBar
-          title="SENTINEL"
-          showMenuIconButton={false}
-          onTitleTouchTap={() => {
+      <div>
+        <div className="App-Header" title="SENTINEL">
+          <a onClick={() => {
             this.props.store.router.push('/')
-          }}
-        />
+          }}>SENTINEL</a>
+        </div>
         <RouterView></RouterView>
       </div>
     )

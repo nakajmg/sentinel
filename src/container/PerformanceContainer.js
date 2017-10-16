@@ -17,17 +17,10 @@ function PerformanceContainer({store, params}) {
 
   return (
     <div>
-      <div style={{
-        backgroundColor: '#333',
-        color: '#fff',
-        textAlign: 'center',
-        display: 'flex',
-        alignItems: 'center',
-        fontSize: '14px',
-        padding: '10px',
-      }}>
+      <div>
         <BrowserVersion browser={data.env.browser}></BrowserVersion>
         <OSVersion os={data.env.os}></OSVersion>
+        {/*<Timestamp date={data.date}></Timestamp>*/}
       </div>
       <NavigationTimingChart data={data}></NavigationTimingChart>
     </div>
