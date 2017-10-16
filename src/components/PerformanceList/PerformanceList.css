@@ -11,10 +11,10 @@
 .PerformanceList-Table {
   width: 100%;
   border-collapse: collapse;
+  border: 1px solid #434857;
 }
   .PerformanceList-TableRow th {
     text-align: left;
-    border-top: 1px solid #434857;
     border-bottom: 1px solid #1997c6;
     padding: 0.25em 0.5em;
     font-weight: normal;
