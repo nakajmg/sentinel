@@ -20,7 +20,8 @@ function PerformanceContainer({store, params}) {
   const timing = formatNavigationTiming(data)
   console.log(JSON.parse(JSON.stringify(data)))
   const style = {
-    backgroundColor: '#434857'
+    backgroundColor: '#434857',
+    padding: '0.5em',
   }
   return (
     <div className="PerformanceContainer">

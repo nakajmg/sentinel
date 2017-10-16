@@ -1,0 +1,32 @@
+.PerformanceList {
+  padding: 10px 15px;
+  margin: auto;
+}
+
+.PerformanceList-Title {
+  font-size: 2em;
+  margin-bottom: 0.5em;
+}
+
+.PerformanceList-Table {
+  width: 100%;
+  border-collapse: collapse;
+}
+  .PerformanceList-TableRow th {
+    text-align: left;
+    border-top: 1px solid #434857;
+    border-bottom: 1px solid #1997c6;
+    padding: 0.25em 0.5em;
+    font-weight: normal;
+  }
+  .PerformanceList-TableRow td {
+    border-bottom: 1px solid #434857;
+    padding: 0.5em;
+    vertical-align: bottom;
+  }
+  
+  .PerformanceList-TableRow:hover td {
+    cursor: pointer;
+    /*border-bottom-color: #1997c6;*/
+    background-color: #1997c6;
+  }

@@ -3,7 +3,7 @@ import Timestamp from './Timestamp'
 import BrowserVersion from './BrowserVersion'
 import OSVersion from './OSVersion'
 import '../../App.css'
-import './index.css'
+import './PerformanceList.css'
 
 /**
  * @param {Object} props
@@ -23,18 +23,23 @@ function PerformanceList({items, router}) {
     })
   }
   return (
-    <table>
-      <thead>
-        <tr>
-          <th>Browser</th>
-          <th>OS</th>
-          <th>Date</th>
-        </tr>
-      </thead>
-      <tbody>
-        {renderItems({items, navigate})}
-      </tbody>
-    </table>
+    <div className="PerformanceList">
+      <div className="PerformanceList-Title">
+        Data
+      </div>
+      <table className="PerformanceList-Table">
+        <thead>
+          <tr className="PerformanceList-TableRow">
+            <th>Browser</th>
+            <th>OS</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody className="PerformanceList-TableBody">
+          {renderItems({items, navigate})}
+        </tbody>
+      </table>
+    </div>
   )
 }
 
@@ -58,19 +63,19 @@ function renderItems({items, navigate}) {
     const {date} = item
     return (
       <tr
-        className='cursorPointer'
+        className='PerformanceList-TableRow'
         key={item.id}
         onClick={(e) => {
           navigate(item, e)
         }}
       >
-        <td>
+        <td className="PerformanceList-TableData">
           <BrowserVersion browser={browser} />
         </td>
-        <td>
+        <td className="PerformanceList-TableData">
           <OSVersion os={os} />
         </td>
-        <td>
+        <td className="PerformanceList-TableData">
           <Timestamp date={date} />
         </td>
       </tr>

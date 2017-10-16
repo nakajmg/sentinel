@@ -2,9 +2,10 @@
   display: inline-flex;
   align-items: center;
   font-size: 0.8em;
-  padding: 0.5em 0.5em;
+  /*padding: 0.5em 0.5em;*/
   border-radius: 2px;
   line-height: 1.25;
+  vertical-align: middle;
 }
 
 .OSVersion-Icon img{
