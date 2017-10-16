@@ -2,8 +2,8 @@ import 'whatwg-fetch'
 import {observable, action} from 'mobx'
 import {find} from 'lodash-es'
 import PropTypes from 'prop-types'
-import Router from '../Router'
-import routes from '../routes'
+import Router from '../router/Router'
+import routes from '../router/routes'
 /**
  * this is Store
  */

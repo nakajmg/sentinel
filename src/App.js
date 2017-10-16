@@ -3,7 +3,7 @@ import {observer, inject} from 'mobx-react'
 import {propTypes} from './store'
 import {AppBar} from 'material-ui'
 import {grey800} from 'material-ui/styles/colors'
-import RouterView from './RouterView'
+import RouterView from './router/RouterView'
 
 /**
  * App

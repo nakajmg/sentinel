@@ -1,5 +1,5 @@
-import IndexContainer from './container/IndexContainer'
-import PerformanceContainer from './container/PerformanceContainer'
+import IndexContainer from '../container/IndexContainer'
+import PerformanceContainer from '../container/PerformanceContainer'
 
 export default [
   {

@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {observer, inject} from 'mobx-react'
 import {defer} from 'lodash-es'
-import './App.css'
+import '../App.css'
 @inject('store')
 @observer
 class RouterView extends Component {
