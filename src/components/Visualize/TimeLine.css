@@ -1,12 +1,12 @@
 .TimeLine {
-  padding: 10px 0;
   font-size: 14px;
   position: relative;
   height: 100%;
 }
 
 .TimeLine-Content {
-  transform: scale(0.98);
+  /*transform: scale(0.98);*/
+  position: relative;
 }
 .TimeLine-Title {
   font-size: 16px;

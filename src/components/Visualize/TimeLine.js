@@ -96,7 +96,6 @@ class TimeLine extends Component {
     const color = this.color
     return <div className="TimeLine">
       <div className="TimeLine-Title">{this.title}</div>
-      <hr className="App-Splitter" />
       <div className="TimeLine-Content">
         <Graph range={range} timing={this.sortedTiming} color={color} />
         <RangeScale range={range} />
