@@ -24,9 +24,7 @@ function PerformanceList({items, router}) {
   }
   return (
     <div className="PerformanceList">
-      <div className="PerformanceList-Title">
-        Data
-      </div>
+      {/*<div className="PerformanceList-Title">PerformanceList</div>*/}
       <table className="PerformanceList-Table">
         <thead>
           <tr className="PerformanceList-TableRow">

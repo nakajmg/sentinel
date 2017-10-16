@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {observer, inject} from 'mobx-react'
 import {propTypes} from './store'
 import RouterView from './router/RouterView'
+import FA from 'react-fontawesome'
 
 /**
  * App
@@ -16,9 +17,15 @@ class App extends Component {
     return (
       <div>
         <div className="App-Header" title="SENTINEL">
-          <a onClick={() => {
+          <a className="App-HeaderLink"
+            onClick={() => {
             this.props.store.router.push('/')
-          }}>SENTINEL</a>
+          }}>
+            <FA name="line-chart" />
+            <span>
+              SENTINEL
+            </span>
+          </a>
         </div>
         <RouterView></RouterView>
       </div>

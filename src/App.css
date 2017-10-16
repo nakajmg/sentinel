@@ -5,6 +5,16 @@
   color: white;
 }
 
+.App-HeaderLink {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+  .App-HeaderLink .fa {
+    font-size: 1em;
+    margin-right: 7px;
+  }
+
 .fadein {
   opacity: 0.1;
 }
