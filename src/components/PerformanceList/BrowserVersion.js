@@ -10,6 +10,8 @@ import iconBrowser from '../../img/browser.svg'
  * @param {string} props.name - browser names which provide from ua-parser
  * @param {string} props.version - browser versions which provide from ua-parser
  * @return {element}
+ * @example
+ * <BrowserVersion browser={browser} />
  */
 function BrowserVersion({browser}) {
   const {name, version} = browser

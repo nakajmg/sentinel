@@ -1,5 +1,9 @@
 import isUndefined from 'lodash-es/isUndefined'
 
+/**
+ * @param {Object} data
+ * @return {Array | null}
+ */
 function formatNavigationTiming (data) {
   if (isUndefined(data) || isUndefined(data.navigationTiming)) return null
 

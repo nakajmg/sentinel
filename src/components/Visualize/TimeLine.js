@@ -4,28 +4,27 @@ import range from 'lodash-es/range'
 import './TimeLine.css'
 import If from '../If'
 
-//new TimeLine({
-//  title: 'timeline',
-//  range: {
-//    min: 0,
-//    max: 100,
-//  },
-//  timing: [
-//    {
-//      label: 'label dayo',
-//      start: 0,
-//      end: 10,
-//    },
-//    {
-//      label: 'label dayo',
-//      start: 20,
-//      end: 50,
-//    },
-//  ]
-//})
-
 /**
  * @public
+ * @param {Object} props
+ * @param {Array} props.timing
+ * timing: [
+ *   {
+ *    label: 'label dayo',
+ *    start: 0,
+ *    end: 10,
+ *   },
+ *   {
+ *    label: 'label dayo',
+ *    start: 20,
+ *    end: 50,
+ *   },
+ * ]
+ * @param {string} props.title
+ * @reactProps {Array} timing
+ * @reactProps {string} title
+ * @example
+ * <TimeLine timing={timing} title={title} />
  */
 class TimeLine extends Component {
 
@@ -37,6 +36,13 @@ class TimeLine extends Component {
     return this.props.title || ''
   }
 
+  /**
+   * @type {Object}
+   * @property {number} min
+   * @property {number} max
+   * @property {number} duration
+   * @property {Array} scale
+   */
   get range() {
     let min = this.props.timing.reduce((ret, {start}) => {
       if (ret > start) {
@@ -73,6 +79,11 @@ class TimeLine extends Component {
     return {min, max, duration, scale}
   }
 
+  /**
+   * @type {Object}
+   * @property {string} blue
+   * @property {string} green
+   */
   get color() {
     return {
       blue: 'rgba(60,182,227,.9)',
@@ -86,8 +97,8 @@ class TimeLine extends Component {
     return <div className="TimeLine">
       <div className="TimeLine-Content">
         <div className="TimeLine-Title">{this.title}</div>
-        <Graph range={range} timing={this.sortedTiming} color={color}></Graph>
-        <RangeScale range={range}></RangeScale>
+        <Graph range={range} timing={this.sortedTiming} color={color} />
+        <RangeScale range={range} />
       </div>
     </div>
   }

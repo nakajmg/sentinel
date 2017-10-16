@@ -9,6 +9,8 @@ import iconAndroid from '../../img/android.svg'
  * @param {string} props.name - OS names which provide from ua-parser
  * @param {string} props.version - OS versions which provide from ua-parser
  * @return {element}
+ * @example
+ * <OSVersion os={os} />
  */
 function OSVersion ({os}){
   const {name, version} = os

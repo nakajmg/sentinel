@@ -9,6 +9,8 @@ import NavigationTimingChart from '../components/Visualize/NavigationTimingChart
  * @param {Object} props
  * @param {Store} props.store
  * @param {Object} props.params
+ * @example
+ * <PerformanceContainer store={store} params={params} />
  */
 function PerformanceContainer({store, params}) {
   const data = store.getPerformanceDataById(params)
@@ -18,11 +20,11 @@ function PerformanceContainer({store, params}) {
   return (
     <div>
       <div>
-        <BrowserVersion browser={data.env.browser}></BrowserVersion>
-        <OSVersion os={data.env.os}></OSVersion>
-        {/*<Timestamp date={data.date}></Timestamp>*/}
+        <BrowserVersion browser={data.env.browser} />
+        <OSVersion os={data.env.os} />
+        <Timestamp date={data.date} />
       </div>
-      <NavigationTimingChart data={data}></NavigationTimingChart>
+      <NavigationTimingChart data={data} />
     </div>
   )
 }

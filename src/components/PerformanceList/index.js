@@ -6,7 +6,10 @@ import '../../App.css'
 
 /**
  * @param {Object} props
- * @param {Object} props.perfData
+ * @param {Object} props.items
+ * @param {Object} props.router
+ * @example
+ * <PerformanceList items={items} router={router} />
  */
 function PerformanceList({items, router}) {
   function navigate(item, e) {
@@ -51,6 +54,7 @@ function navigate(item) {
 function renderItems({items, navigate}) {
   return items.map((item) => {
     const {browser, os} = item.env
+    const {date} = item
     return (
       <tr
         className='cursorPointer'
@@ -60,13 +64,13 @@ function renderItems({items, navigate}) {
         }}
       >
         <td>
-          <BrowserVersion browser={browser}></BrowserVersion>
+          <BrowserVersion browser={browser} />
         </td>
         <td>
-          <OSVersion os={os}></OSVersion>
+          <OSVersion os={os} />
         </td>
         <td>
-          <Timestamp date={item.date}></Timestamp>
+          <Timestamp date={date} />
         </td>
       </tr>
     )

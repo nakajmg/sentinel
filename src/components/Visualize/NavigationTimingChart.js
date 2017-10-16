@@ -12,7 +12,7 @@ function TimingChart({data}) {
 
   return (
     <div style={{padding: '10px'}}>
-      <TimeLine timing={timing} title={"Navigation Timing"}></TimeLine>
+      <TimeLine timing={timing} title={"Navigation Timing"} />
     </div>
   )
 }
