@@ -3,6 +3,7 @@ import Timestamp from './Timestamp'
 import BrowserVersion from './BrowserVersion'
 import OSVersion from './OSVersion'
 import '../../App.css'
+import './index.css'
 
 /**
  * @param {Object} props

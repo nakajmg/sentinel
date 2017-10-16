@@ -12,7 +12,8 @@ import './OSVersion.css'
  * @example
  * <OSVersion os={os} />
  */
-function OSVersion ({os}){
+function OSVersion ({os, style}){
+  style = style || {}
   const {name, version} = os
   let icon
   switch (name.toLowerCase()) {
@@ -32,7 +33,7 @@ function OSVersion ({os}){
       icon = iconWindows
   }
   return (
-    <span className="OSVersion">
+    <span className="OSVersion" style={style}>
       <span className="OSVersion-Icon">
         <img src={icon} alt={name}/>
       </span>

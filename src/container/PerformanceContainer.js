@@ -19,13 +19,15 @@ function PerformanceContainer({store, params}) {
   if (isUndefined(data)) return <div>no match id</div>
   const timing = formatNavigationTiming(data)
   console.log(JSON.parse(JSON.stringify(data)))
-
+  const style = {
+    backgroundColor: '#434857'
+  }
   return (
     <div className="PerformanceContainer">
       <div className="PerformanceContainer-Env">
-        <BrowserVersion browser={data.env.browser} />
-        <OSVersion os={data.env.os} />
-        <Timestamp date={data.date} />
+        <BrowserVersion style={style} browser={data.env.browser} />
+        <OSVersion style={style} os={data.env.os} />
+        <Timestamp style={style} date={data.date} />
       </div>
       <div className="PerformanceContainer-NavigationTiming">
         <TimeLine timing={timing} title={"Navigation Timing"} />

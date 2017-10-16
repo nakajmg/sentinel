@@ -10,10 +10,11 @@ import './Timestamp.css'
  * @example
  * <TimeStamp date={data.date} />
  */
-function Timestamp({date}) {
+function Timestamp({date, style}) {
+  style = style || {}
   const timestamp = format(date, 'YYYY/MM/DD hh:mm:ss')
   return (
-    <span className="Timestamp">
+    <span className="Timestamp" style={style}>
       <FA name="clock-o" />
       <span className="Timestamp__Label">
         {timestamp}
