@@ -30,6 +30,8 @@ function PerformanceList({items, router}) {
           <tr className="PerformanceList-TableRow">
             <th>Browser</th>
             <th>OS</th>
+            <th>Navigation</th>
+            <th>Resource</th>
             <th>Date</th>
           </tr>
         </thead>
@@ -72,6 +74,16 @@ function renderItems({items, navigate}) {
         </td>
         <td className="PerformanceList-TableData">
           <OSVersion os={os} />
+        </td>
+        <td className="PerformanceList-TableData" style={{fontSize: '0.8em'}}>
+          <span>
+            {item.timing.loadEventEnd - item.timing.navigationStart}ms
+          </span>
+        </td>
+        <td className="PerformanceList-TableData" style={{fontSize: '0.8em'}}>
+          <span>
+            {item.resource ? `x ${item.resource.length}` : '-'}
+          </span>
         </td>
         <td className="PerformanceList-TableData">
           <Timestamp date={date} />

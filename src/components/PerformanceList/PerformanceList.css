@@ -18,12 +18,12 @@
     text-align: left;
     border-bottom: 1px solid #1997c6;
     padding: 0.25em 0.5em;
-    font-weight: normal;
+    font-weight: 200;
   }
   .PerformanceList-TableRow td {
     border-bottom: 1px solid #434857;
     padding: 0.5em;
-    vertical-align: bottom;
+    vertical-align: middle;
   }
   
   .PerformanceList-TableRow:hover td {

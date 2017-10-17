@@ -42,6 +42,7 @@ class PerformanceContainer extends Component {
         </div>
         <div className="PerformanceContainer-NavigationTiming GridItem-Column1">
           <div className="SwitchData">
+            {/* ToDo このあたり汚すぎ */}
             <button
               className={`SwitchData-Button ${this.state.active === 'navigation' ? '--Active' : ''}`}
               onClick={() => this.setState({active: 'navigation'})}
