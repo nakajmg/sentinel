@@ -32,8 +32,14 @@ function PerformanceContainer({store, params}) {
         <Timestamp style={style} date={data.date} />
       </div>
       <div className="PerformanceContainer-NavigationTiming GridItem-Column1">
-        <TimeLine timing={timing} title={"Navigation Timing"} />
-        <ResourceTimingList resource={data.resource} />
+        <div className="SwitchData">
+          <button className="SwitchData-Button">Navigation</button>
+          <button className="SwitchData-Button">Resource</button>
+        </div>
+        <div className="SwitchData-Container">
+          <TimeLine timing={timing} title={"Navigation Timing"} />
+          <ResourceTimingList resource={data.resource} />
+        </div>
       </div>
     </div>
   )
