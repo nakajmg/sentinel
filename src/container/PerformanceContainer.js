@@ -33,7 +33,7 @@ function PerformanceContainer({store, params}) {
       </div>
       <div className="PerformanceContainer-NavigationTiming GridItem-Column1">
         <TimeLine timing={timing} title={"Navigation Timing"} />
-        {/*<ResourceTimingList resource={data.resource} />*/}
+        <ResourceTimingList resource={data.resource} />
       </div>
     </div>
   )

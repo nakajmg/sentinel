@@ -3,6 +3,7 @@ import sortBy from 'lodash-es/sortBy'
 import range from 'lodash-es/range'
 import './TimeLine.css'
 import If from '../If'
+import FA from 'react-fontawesome'
 
 /**
  * @public
@@ -56,6 +57,8 @@ class TimeLine extends Component {
       }
       return ret
     }, 0)
+    this.min = min
+    this.max = max
     const digit = Math.log10(max - min) + 1 | 0
     let cardinal = 1
     switch(digit) {
@@ -79,32 +82,37 @@ class TimeLine extends Component {
     return {min, max, duration, scale}
   }
 
-  /**
-   * @type {Object}
-   * @property {string} blue
-   * @property {string} green
-   */
-  get color() {
-    return {
-      blue: 'rgba(60,182,227,.9)',
-      green: 'rgba(154,202,39,.9)',
-    }
-  }
-
   render() {
     const range = this.range
-    const color = this.color
+    const timing = this.sortedTiming
+//    timing.splice(0, 0, {
+//      label: 'Duration',
+//      duration: this.max - this.min,
+//      start: this.min,
+//      end: this.max,
+//    })
     return <div className="TimeLine">
-      <div className="TimeLine-Title">{this.title}</div>
+      <div className="TimeLine-Title">
+        <FA name="bar-chart" />
+        <span>
+          {this.title}
+        </span>
+      </div>
+      <div className="TimeLine-Duration">
+        <FA name="clock-o" />
+        <span>
+          {this.max - this.min}ms
+        </span>
+      </div>
       <div className="TimeLine-Content">
-        <Graph range={range} timing={this.sortedTiming} color={color} />
+        <Graph range={range} timing={timing} />
         <RangeScale range={range} />
       </div>
     </div>
   }
 }
 
-function Graph({range, timing, color}) {
+function Graph({range, timing}) {
   return (
     <div>
       {
@@ -113,18 +121,19 @@ function Graph({range, timing, color}) {
           const percentage = ((duration ? duration / range.duration : 0) * 100)
           const point = ((start ? start / range.duration : 0) * 100) + '%'
           return (
-            <div key={label} className="TimeLine-Timing">
+            <div key={label + duration} className="TimeLine-Timing">
               <span className="TimeLine-Timing__Spacer" style={{ width: point }}>
               </span>
-              <span className="TimeLine-Timing__Info"
+              <span className={`TimeLine-Timing__Info ${duration ? '' : '--EmptyDuration'}`}
                 style={{
-                  width: percentage ? `${percentage}%` : '4px',
-                  backgroundColor: duration ? color.green : color.blue,
-                  color: duration ? color.green : color.blue,
+                  width: percentage ? `${percentage}%` : null,
                 }}
               >
+                <span className="TimeLine-Timing__Label">
+                  {label}
+                </span>
                 <span className="TimeLine-Timing__Duration">
-                  {duration ? `${duration}ms` : ''}
+                  {duration ? ` / ${duration}ms` : ''}
                 </span>
                 <div className="TimeLine-Timing__Detail">
                   <div className="TimeLine-Timing__Detail-Content">
@@ -137,9 +146,6 @@ function Graph({range, timing, color}) {
                     </If>
                   </div>
                 </div>
-                <span className="TimeLine-Timing__Label">
-                  {label}
-                </span>
               </span>
             </div>
           )

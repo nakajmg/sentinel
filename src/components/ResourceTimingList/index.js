@@ -1,58 +1,57 @@
 import React from 'react'
+import TimeLine from '../Visualize/TimeLine'
 
 function ResourceTimingList({resource}) {
   if (!resource) return null
+  const graphs = resource.map(resource => {
+    const {timing, name} = formatResourceTiming(resource)
+    return (
+      <div key={name + Math.round(resource.startTime)}>
+        <TimeLine timing={timing} title={name} />
+      </div>
+    )
+  })
 
   return (
     <div>
-      {
-        resource.map(timing => {
-          return <div key={timing.name + Math.round(timing.startTime)}>{timing.name}</div>
-        })
-      }
+      {graphs}
     </div>
   )
 }
-/*
+
 function formatResourceTiming(data) {
   const {
     name,
-    entryType,
+//    entryType,
     startTime,
-    duration,
-    initiatorType,
-    nextHopProtocol,
-    workerStart,
+//    duration,
+//    initiatorType,
+//    nextHopProtocol,
+//    workerStart,
     redirectStart,
     redirectEnd,
-    fetchStart,
+//    fetchStart,
     domainLookupStart,
     domainLookupEnd,
     connectStart,
     connectEnd,
-    secureConnectionStart,
+//    secureConnectionStart,
     requestStart,
     responseStart,
     responseEnd,
-    transferSize,
-    encodedBodySize,
-    decodedBodySize,
-    serverTiming,
-    connect
+//    transferSize,
+//    encodedBodySize,
+//    decodedBodySize,
+//    serverTiming,
+//    connect
   } = data
 
   const timing = [
     {
-      label: 'Duration',
-      duration: duration,
-      start: startTime - startTime,
-      end: responseEnd - startTime,
-    },
-    {
       label: 'Redirect',
       duration: redirectEnd - redirectStart,
-      start: redirectStart - startTime,
-      end: redirectEnd - startTime,
+      start: redirectStart ? redirectStart - startTime : 0,
+      end: redirectEnd ? redirectEnd - startTime : 0,
     },
     {
       label: 'DomainLookUp',
@@ -82,6 +81,5 @@ function formatResourceTiming(data) {
 
   return {timing, name}
 }
-*/
 
 export default ResourceTimingList
